@@ -1,0 +1,119 @@
+// Responsive Design Starts Bellow
+
+@media (max-width: 900px) {
+    header {
+        h1 {
+        font-size: 4rem;
+        }
+    }
+}
+
+@include mqTabletVert {
+    header {
+        h1 {
+            &::before,
+            &::after {
+                top: 12px;
+            }
+        }
+    }
+    .flexInputs {
+        flex-direction: column;
+        align-items: center;
+    }
+    .results {
+        p {
+            font-size: 2.3rem;
+        }
+        li {
+            width: auto;
+        }
+    }
+}
+
+@include mqMobile {
+    header {
+        .wrapper {
+            h1 {
+                font-size: 2.5rem;
+                &::before,
+                &::after {
+                    display: none;
+                }
+                        
+            }
+        }
+    }
+    .inputs {
+        height: 75vh;
+    }
+    form {
+        fieldset {
+            label {
+                font-size: 1.6rem;
+            }
+            p {
+                font-size: 1.6rem;
+                padding: 0;
+            }
+            input[type="search"],
+            select, 
+            input[type="text"] {
+                font-size: 1.6rem;
+            }
+            .searchButton {
+                flex-direction: column;
+                button:nth-child(2) {
+                    align-self: center;
+                    width: 45%;
+                    margin-top: 5%;
+                }
+            }
+            #time {
+                width: 30%;
+            }
+        }
+        fieldset:nth-child(1) > button:nth-child(5) {
+            margin-top: 10%;
+            padding: 5px 40px;
+        }
+        .submit {
+            width: 45%;
+        }
+    }
+    .results {
+        p {
+            font-size: 2rem;
+        }
+        li {
+            font-size: 1.8rem;
+        }
+        .delays p {
+            margin-top: 15%;
+        }
+        .departures,
+        .arrivals {
+            height: auto;
+        }
+    }
+    footer p {
+        font-size: 1.5rem;
+    }
+    .errorMessage {
+        width: 90%;
+        height: auto;
+        left: 5%;
+    }
+}
+
+@include mqMobilePlus {
+    .inputs {
+        height: 74vh;
+    }
+}
+
+@include mqMobileSE {
+    .inputs {
+        height: auto;
+    }
+}

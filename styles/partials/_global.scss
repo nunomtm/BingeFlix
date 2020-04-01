@@ -1,0 +1,54 @@
+// Global Styles Starts Here
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0 auto;
+    font-family: 'Nunito', sans-serif;
+    color: black;
+}
+
+.wrapper {
+    max-width: 1140px;
+    width: 80%;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+h1 {
+    font-family: 'Bebas Neue', cursive;
+    margin: 0;
+}
+
+// button {
+//     font-size: 1.8rem;
+//     text-align: center;
+//     width: 100px;
+//     border-radius: 20px;
+//     transition: 0.35s;
+//     background: $primeryColor;
+//     &:hover {
+//         background: $primeryColor;
+//     }
+// }
+
+
+/* Skip-line for accessibility */
+.skipLink {
+    position: absolute;
+    left: -1000px;
+    top: 5px;
+    z-index: 999;
+    background: $primeryBackground;
+    color: $primeryBackground;
+}
+
+.skipLink:focus {
+    left: 0;
+}

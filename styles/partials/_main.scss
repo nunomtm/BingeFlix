@@ -1,0 +1,88 @@
+main {
+    height: auto;
+    background: $primeryBackground;
+
+    .popular h2 {
+        font-family: 'Nunito', sans-serif;
+        font-size: 3.5rem;
+        color: white;
+        margin: 0;
+    }
+
+    .results {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        .movieDetails {
+            width: 18%;
+            padding: 1%;
+            .moviePoster {
+                .poster {
+                    border: 2px solid silver;
+                    box-shadow: 0 4px 4px lightgrey;
+                    border-radius: 15px;
+                    padding: 8px;
+                    transition: ease 0.25s;
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+                }
+                .movieInfo {
+                    h3,
+                    h4,
+                    p {
+                        font-family: 'Nunito', sans-serif;
+                        color: $primeryBorder;
+                        text-align: center;
+                    }
+            
+                    h3 {
+                        font-size: 1.6rem;
+                        font-style: italic;
+                        padding-top: 15px;
+                    }
+            
+                    h4,
+                    p {
+                        font-size: 1.3rem;
+                        text-transform: lowercase;
+                    }
+                }
+                
+            } 
+        }
+    }
+    
+}
+
+
+
+    // form {
+    //     fieldset {
+    //         display: flex;
+    //         margin: 0;
+    //         padding: 0;
+    //         border: none;
+    //         label {
+    //             text-align: center;
+    //             font-size: 3rem;
+    //             color: $primeryColor;
+    //         }
+    //         input[type="search"],
+    //         select, 
+    //         input[type="text"] {
+    //             font-size: 2rem;
+    //             border-radius: 5px;
+    //             &:focus {
+    //                 background: $secondaryPopColor;
+    //                 color: $primeryColor;
+    //             }
+    //         }
+    //         .search {
+    //             height: 100%;
+    //         }
+    //     }
+    // }
+
+
+// .results {}
