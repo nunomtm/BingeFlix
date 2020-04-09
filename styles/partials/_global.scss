@@ -12,31 +12,20 @@ body {
 }
 
 .wrapper {
-    max-width: 1140px;
-    width: 80%;
+    max-width: 1280px;
+    width: 90%;
+    margin: 0 auto;
 }
 
 img {
     display: block;
     width: 100%;
-}
+}s
 
 h1 {
     font-family: 'Bebas Neue', cursive;
     margin: 0;
 }
-
-// button {
-//     font-size: 1.8rem;
-//     text-align: center;
-//     width: 100px;
-//     border-radius: 20px;
-//     transition: 0.35s;
-//     background: $primeryColor;
-//     &:hover {
-//         background: $primeryColor;
-//     }
-// }
 
 
 /* Skip-line for accessibility */

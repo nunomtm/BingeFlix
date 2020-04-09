@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://kit.fontawesome.com/3d22ae5abd.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/3d22ae5abd.js" crossorigin="anonymous"></script> -->
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Nunito&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./styles/styles.css">
@@ -15,10 +15,9 @@
     <a href="header" class="skipLink">Skip to main content.</a>
 
     <header>
-        <h1>Bingeflix</h1>
-
-        <div class="navContainer">
+        <div class="navContainer wrapper">
             <nav class="nav">
+                <h1 class="logo">Bingeflix</h1>
                 <ul>
                     <li><a class="hvr-wobble-vertical" href="index.html">Home</a></li>
                     <li><a class="hvr-wobble-vertical" href="#popular">Popular Movies</a></li>
@@ -41,57 +40,30 @@
     </header>
     
     <section id="carouselContainer">
-        <div class="contentSlider">
-            <input type="radio" id="banner1" class="sec-1-input" name="banner" checked>
-            <input type="radio" id="banner2" class="sec-1-input" name="banner">
-            <input type="radio" id="banner3" class="sec-1-input" name="banner">
-            <input type="radio" id="banner4" class="sec-1-input" name="banner">
-            <input type="radio" id="banner5" class="sec-1-input" name="banner">
-
+        <div class="contentSlider wrapper">
             <div class="slider">
-                <div id="topBanner1" class="banner">
-                    <div class="bannerInnerWrapper">
-                        <h2>Creative Template</h2>
-                        <div class="line"></div>
-                    </div>
-                </div>
-                <div id="topBanner2" class="banner">
-                    <div class="bannerInnerWrapper">
-                        <h2>What We Do</h2>
-                        <div class="line"></div>
-                    </div>
-                </div>
-                <div id="topBanner3" class="banner">
-                    <div class="bannerInnerWrapper">
-                        <h2>Here We Are</h2>
-                        <div class="line"></div>
-                    </div>
-                </div>
-                <div id="topBanner4" class="banner">
-                    <div class="bannerInnerWrapper">
-                        <h2>Our Contacts</h2>
-                        <div class="line"></div>
-                    </div>
-                </div>
-                <div id="topBanner5" class="banner">
-                    <div class="bannerInnerWrapper">
-                        <h2>Other Movie</h2>
-                        <div class="line"></div>
-                    </div>
+                <div class="bannerContainer banner">
+                    <!-- <div class="heroBanner"></div> -->
                 </div>
             </div>
+
+            <input type="radio" id="banner1" class="carousel" name="banner" checked>
+            <input type="radio" id="banner2" class="carousel" name="banner">
+            <input type="radio" id="banner3" class="carousel" name="banner">
+            <input type="radio" id="banner4" class="carousel" name="banner">
+            <input type="radio" id="banner5" class="carousel" name="banner">
+
             <nav>
                 <div class="controls">
                     <label for="banner1"><span class="progressbar"><span
-                        class="progressbarFill"></span></span><span>01</span> Movie Name</label>
+                        class="progressbarFill"></span></span></label>
                     <label for="banner2"><span class="progressbar"><span
-                        class="progressbarFill"></span></span><span>02</span> Movie Name</label>
+                        class="progressbarFill"></span></span></label>
                     <label for="banner3"><span class="progressbar"><span
-                        class="progressbarFill"></span></span><span>03</span> Movie Name</label>
+                        class="progressbarFill"></span></span></label>
                     <label for="banner4"><span class="progressbar"><span
-                        class="progressbarFill"></span></span><span>04</span> Movie Name</label>
-                    <label for="banner5"><span class="progressbar"><span      class="progressbarFill"></span></span><span>05</span> Movie
-                        Name</label>
+                        class="progressbarFill"></span></span></label>
+                    <label for="banner5"><span class="progressbar"><span      class="progressbarFill"></span></span></label>
                 </div>
             </nav>
         </div>
@@ -99,7 +71,7 @@
 
     <main>
         <section id="popular">
-            <div class="popular">
+            <div class="popular wrapper">
                 <h2>Popular Movies</h2>
     
                 <div class="results"></div>

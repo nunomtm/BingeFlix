@@ -1,21 +1,21 @@
 main {
+    padding-top: 35px;
     height: auto;
     background: $primeryBackground;
-
     .popular h2 {
         font-family: 'Nunito', sans-serif;
         font-size: 3.5rem;
         color: white;
         margin: 0;
+        padding: 10px 0;
     }
-
     .results {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
         .movieDetails {
-            width: 18%;
-            padding: 1%;
+            width: 250px;
+            padding: 15px;
             .moviePoster {
                 .poster {
                     border: 2px solid silver;
@@ -33,12 +33,13 @@ main {
                     p {
                         font-family: 'Nunito', sans-serif;
                         color: $primeryBorder;
-                        text-align: center;
+                        text-align: left;
                     }
             
                     h3 {
                         font-size: 1.6rem;
                         font-style: italic;
+                        text-align: center;
                         padding-top: 15px;
                     }
             

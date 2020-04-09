@@ -247,8 +247,9 @@ body {
 }
 
 .wrapper {
-  max-width: 1140px;
-  width: 80%;
+  max-width: 1280px;
+  width: 90%;
+  margin: 0 auto;
 }
 
 img {
@@ -256,6 +257,7 @@ img {
   width: 100%;
 }
 
+s
 h1 {
   font-family: 'Bebas Neue', cursive;
   margin: 0;
@@ -276,33 +278,29 @@ h1 {
 }
 
 header {
-  height: 10vh;
   background: #000;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-header h1 {
-  font-size: 5rem;
-  color: #d81f26;
-  margin-left: 50px;
 }
 
 header .navContainer {
-  width: 100%;
+  min-height: 10vh;
 }
 
 header .navContainer .nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .navContainer .nav .logo {
+  font-size: 5rem;
+  color: #d81f26;
+  margin: 0;
 }
 
 header .navContainer .nav ul {
@@ -314,9 +312,7 @@ header .navContainer .nav ul {
           justify-content: space-between;
   list-style: none;
   margin: 0;
-  margin-right: 50px;
-  padding: 0;
-  width: 40%;
+  width: 50%;
 }
 
 header .navContainer .nav ul li {
@@ -342,13 +338,12 @@ header .mobileNav {
 
 /* Carousel Styles */
 #carouselContainer {
-  height: 90vh;
+  height: 85vh;
   background-color: #000;
 }
 
 #carouselContainer .contentSlider {
-  position: relative;
-  width: 100%;
+  width: 90%;
   height: 100%;
 }
 
@@ -358,61 +353,90 @@ header .mobileNav {
 
 #carouselContainer .contentSlider .slider {
   position: relative;
-  width: inherit;
+  width: 100%;
   height: inherit;
-  overflow: hidden;
 }
 
-#carouselContainer .contentSlider .slider .banner {
+#carouselContainer .contentSlider .slider .bannerContainer {
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0;
-  z-index: 0;
   width: inherit;
   height: inherit;
-  text-align: center;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  -webkit-transition: all .5s ease;
-  transition: all .5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
-#carouselContainer .contentSlider .slider .banner .banner-inner-wrapper {
-  height: 100%;
-  padding-top: 6rem;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+#carouselContainer .contentSlider .slider .bannerContainer .movieBanner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
-#carouselContainer .contentSlider .slider .banner .banner-inner-wrapper h2 {
-  padding-bottom: 0.3rem;
-  color: #d81f26;
-  font-weight: 400;
-  font-size: 2.5rem;
-  text-transform: none;
+#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo {
+  width: 50%;
+  height: 85vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: left;
 }
 
-#carouselContainer .contentSlider .slider .banner .banner-inner-wrapper .line {
-  display: block;
-  width: 4rem;
-  height: 0.1875rem;
-  margin: 2.5rem auto;
-  background: #fff;
+#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo h3,
+#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo h4,
+#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo p {
+  padding: 8px;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo h3 {
+  font-size: 3.5rem;
+}
+
+#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo h4 {
+  font-size: 1.8rem;
+  padding-top: 15px;
+}
+
+#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo p {
+  font-size: 1.4rem;
+  letter-spacing: 1.2px;
+  line-height: 2;
+  padding-top: 15px;
+}
+
+#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerBackdrop {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerBackdrop .backdrop {
+  width: 78%;
 }
 
 #carouselContainer .contentSlider nav {
-  position: absolute;
-  bottom: 0.5em;
   width: 100%;
-  z-index: 10;
   text-align: center;
-  padding-bottom: 50px;
 }
 
 #carouselContainer .contentSlider nav .controls {
   display: block;
-  width: 70%;
   margin: 0 auto;
   color: #fff;
 }
@@ -426,12 +450,9 @@ header .mobileNav {
   margin: 0 1rem;
   padding-top: 1rem;
   text-align: left;
-  text-transform: uppercase;
-  font-size: 1rem;
-  font-weight: 400;
   cursor: pointer;
-  -webkit-transition: all .3s;
-  transition: all .3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 #carouselContainer .contentSlider nav .controls label .progressbar {
@@ -452,20 +473,11 @@ header .mobileNav {
   background: #919191;
 }
 
-#carouselContainer .contentSlider nav .controls label span {
-  font-size: 1.4rem;
-  font-weight: 700;
-}
-
-#carouselContainer .contentSlider nav .controls label:hover, #carouselContainer .contentSlider nav .controls label:focus {
-  color: #596157;
-}
-
-#carouselContainer .contentSlider #banner1:checked ~ .slider #topBanner1,
-#carouselContainer .contentSlider #banner2:checked ~ .slider #topBanner2,
-#carouselContainer .contentSlider #banner3:checked ~ .slider #topBanner3,
-#carouselContainer .contentSlider #banner4:checked ~ .slider #topBanner4,
-#carouselContainer .contentSlider #banner5:checked ~ .slider #topBanner5 {
+#carouselContainer .contentSlider #banner1:checked ~ .slider .bannerContainer,
+#carouselContainer .contentSlider #banner2:checked ~ .slider .bannerContainer,
+#carouselContainer .contentSlider #banner3:checked ~ .slider .bannerContainer,
+#carouselContainer .contentSlider #banner4:checked ~ .slider .bannerContainer,
+#carouselContainer .contentSlider #banner5:checked ~ .slider .bannerContainer {
   opacity: 1;
   z-index: 1;
 }
@@ -477,8 +489,8 @@ header .mobileNav {
 #carouselContainer .contentSlider #banner5:checked ~ nav label:nth-of-type(5) {
   cursor: default;
   color: #d81f26;
-  -webkit-transition: all .5s;
-  transition: all .5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 #carouselContainer .contentSlider #banner1:checked ~ nav label:nth-of-type(1) .progressbar,
@@ -517,6 +529,7 @@ header .mobileNav {
 }
 
 main {
+  padding-top: 35px;
   height: auto;
   background: #000;
 }
@@ -526,6 +539,7 @@ main .popular h2 {
   font-size: 3.5rem;
   color: white;
   margin: 0;
+  padding: 10px 0;
 }
 
 main .results {
@@ -540,8 +554,8 @@ main .results {
 }
 
 main .results .movieDetails {
-  width: 18%;
-  padding: 1%;
+  width: 250px;
+  padding: 15px;
 }
 
 main .results .movieDetails .moviePoster .poster {
@@ -564,12 +578,13 @@ main .results .movieDetails .moviePoster .movieInfo h4,
 main .results .movieDetails .moviePoster .movieInfo p {
   font-family: 'Nunito', sans-serif;
   color: #fff;
-  text-align: center;
+  text-align: left;
 }
 
 main .results .movieDetails .moviePoster .movieInfo h3 {
   font-size: 1.6rem;
   font-style: italic;
+  text-align: center;
   padding-top: 15px;
 }
 

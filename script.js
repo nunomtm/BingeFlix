@@ -5,18 +5,54 @@ flixApp.imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
 
 // Carousel Function
 function bannerSwitcher() {
-    next = $('.sec-1-input').filter(':checked').next('.sec-1-input');
+    next = $('.carousel').filter(':checked').next('.carousel');
     if (next.length) next.prop('checked', true);
-    else $('.sec-1-input').first().prop('checked', true);
+    else $('.carousel').first().prop('checked', true);
 }
 
-let bannerTimer = setInterval(bannerSwitcher, 6000);
+let bannerTimer = setInterval(bannerSwitcher, 5000);
 
 $('nav .controls label').click(function () {
     clearInterval(bannerTimer);
-    bannerTimer = setInterval(bannerSwitcher, 6000)
+    bannerTimer = setInterval(bannerSwitcher, 5000)
 });
 
+
+// Call to get the Top Rated Movies to display in the carousel
+flixApp.moviesHero = function () {
+    $.ajax({
+        url: `${flixApp.baseUrl}/movie/now_playing`,
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            api_key: flixApp.key,
+        }
+    }).then(function (nowPlayingData) {
+        console.log(nowPlayingData.results)
+        flixApp.displayNowPlayingMovies(nowPlayingData.results);
+    }).fail(function (error) {
+        alert('The movie could not be found')
+    });
+}
+
+// To display Now Playing Movies on the carousel
+flixApp.displayNowPlayingMovies = function (playingMovies) {
+    playingMovies.forEach(playingMovie => {
+        const playingMovieDisplay = `
+            <div class="movieBanner"> 
+                <div class="bannerInfo">
+                    <h3>${playingMovie.title}</h3>
+                    <h4>${playingMovie.release_date}</h4>
+                    <p>${playingMovie.overview}</p>
+                </div>
+                <div class="bannerBackdrop">
+                    <img class="backdrop" src="${flixApp.imageBaseUrl}/${playingMovie.poster_path}"/>
+                </div>
+            </div>
+        `;
+        $('.bannerContainer').append(playingMovieDisplay);
+    });
+}
 
 // To display Popular Movies on the page
 flixApp.displayPopularMovies = function(details) {
@@ -29,7 +65,6 @@ flixApp.displayPopularMovies = function(details) {
                         <h3>${movie.title}</h3>
                         <h4>${movie.release_date}</h4>
                         <p>${movie.overview}</p>
-                        <a href = "${flixApp.baseUrl}/movie/${movie.id}/videos"> Trailer</a >
                     </div>
                 </div>
             </div>
@@ -51,7 +86,7 @@ flixApp.displayPopularMovies = function(details) {
     });
 }
 
-    // <a href = "${flixApp.baseUrl}/movie/${movie.id}/videos"> Trailer</a >
+    // < a href = "https://www.youtube.com/watch?v=${movie.results[0].id}" > Trailer</a >
 
 // Call to get the data from API about the Popular Movies
 flixApp.popularMovies = function() {
@@ -70,48 +105,29 @@ flixApp.popularMovies = function() {
     });
 }
 
+// Call to get the video ID to play on YouTube
+// flixApp.movieVideos = function () {
+//     $.ajax({
+//         url: `${flixApp.baseUrl}/movie/533ec654c3a36854480003eb/videos`,
+//         method: 'GET',
+//         dataType: 'json',
+//         data: {
+//             api_key: flixApp.key
+//         }
+//     }).then(function (videoData) {
+//         console.log(videoData.results[0].id)
+//         // flixApp.displayMovieVideos(videoData.results[0].id)
+//     }).fail(function (error) {
+//         alert('The movie could not be found')
+//     });
+// }
+
 flixApp.init = function() {
     flixApp.popularMovies();
+    // flixApp.movieVideos();
+    flixApp.moviesHero();
 }
 
 $(function() {
     flixApp.init();
 })
-
-// // Carousel 
-// let carousel = document.querySelector('.carousel');
-// let container = carousel.querySelector('.carouselContainer');
-// let prevBtn = carousel.querySelector('.carouselPrev');
-// let nextBtn = carousel.querySelector('.carouselNext');
-// let pagination = carousel.querySelector('.carouselPagination');
-// let bullets = [].slice.call(carousel.querySelectorAll('.carouselBullet'));
-// let totalItems = container.querySelectorAll('.carouselItem').length;
-// let percent = (100 / totalItems);
-// let currentIndex = 0;
-
-// function next() {
-//     slideTo(currentIndex + 1);
-// }
-
-// function prev() {
-//     slideTo(currentIndex - 1);
-// }
-
-// function slideTo(index) {
-//     index = index < 0 ? totalItems - 1 : index >= totalItems ? 0 : index;
-//     container.style.WebkitTransform = container.style.transform = 'translate(-' + (index * percent) + '%, 0)';
-//     bullets[currentIndex].classList.remove('activeBullet');
-//     bullets[index].classList.add('activeBullet');
-//     currentIndex = index;
-// }
-
-// bullets[currentIndex].classList.add('activeBullet');
-// prevBtn.addEventListener('click', prev, false);
-// nextBtn.addEventListener('click', next, false);
-
-// pagination.addEventListener('click', function (e) {
-//     let index = bullets.indexOf(e.target);
-//     if (index !== -1 && index !== currentIndex) {
-//         slideTo(index);
-//     }
-// }, false);
