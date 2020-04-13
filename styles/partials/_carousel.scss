@@ -1,76 +1,105 @@
 /* Carousel Styles */
 #carouselContainer {
-	height: 85vh;
-	background-color: $primeryBackground;
+	height: 89vh;
+	background: rgb(2,0,36);
+	background: linear-gradient(135deg, rgba(2,0,36,1) 20%, rgba(0,242,255,1) 50%, rgba(2,0,36,1) 80%);
 	.contentSlider {
 		width: 90%;
 		height: 100%;
-		input {
-            display: none;
-        }
 		.slider {
-			position: relative;
+			// position: relative;
 			width: 100%;
 			height: inherit;
-			// overflow: hidden;
-			.bannerContainer {
-				position: absolute;
-				top: 0;
-				left: 0;
+			overflow: hidden;
+			.movieBanner {
+				// top: 0;
+				// left: 0;
+				display: flex;
+				justify-content: space-between;
 				width: inherit;
 				height: inherit;
 				transition: all 0.5s ease;
-				.movieBanner {
+				.bannerInfo {
 					display: flex;
-					justify-content: space-around;
-					.bannerInfo {
-						width: 50%;
-						height: 85vh;
+					flex-direction: column;
+					justify-content: center;
+					text-align: justify;
+					width: 50%;
+					height: 89vh;
+					padding: 0 40px;
+					.bannerDetails {
 						display: flex;
-						flex-direction: column;
-						justify-content: center;
-						text-align: left;
-						h3,
-						h4,
+						justify-content: space-between;
+						align-items: center;
 						p {
-							padding: 8px;
-							margin: 0;
-							padding: 0;
-							color: $primeryBorder;
+							font-size: 2.5rem;
 						}
-						h3 {
-							font-size: 3.5rem;
-						}
-						h4 {
-							font-size: 1.8rem;
-							padding-top: 15px;
-						}
-						p {
-							font-size: 1.4rem;
-							letter-spacing: 1.2px;
-							line-height: 2;
-							padding-top: 15px;
-						}
-
 					}
-					.bannerBackdrop {
-						width: 50%;
-						display: flex;
-						justify-content: center;
-						.backdrop {
-							width: 78%;
+					h3,
+					h4,
+					p,
+					a {
+						padding: 8px;
+						margin: 0;
+						padding: 0;
+						color: $primaryBorder;
+					}
+					h3 {
+						font-size: 5rem;
+					}
+					h4 {
+						font-size: 1.8rem;
+						padding-top: 15px;
+					}
+					p {
+						font-size: 1.4rem;
+						letter-spacing: 1.2px;
+						line-height: 2;
+						padding-top: 15px;
+					}
+					.btn {
+						font-size: 1.6rem;
+						text-align: center;
+						margin-top: 15px;
+						padding: 5px 20px;
+						border: 1px solid $primaryBorder;
+						border-radius: 15px;
+						cursor: pointer;
+						transition: ease 0.35s;
+						display: inline-table;
+						&:hover {
+							background: rgb(0,0,0);
+							background: linear-gradient(130deg, rgba(0,0,0,1) 0%, rgba(0,242,255,1) 100%);
+							border: 1px solid $primaryBorder;
 						}
+						i {
+							padding-left: 5px;
+							font-size: 1.4rem;
+						}
+					
 					}
 				}
-            }
+				.bannerBackdrop {
+					width: 50%;
+					display: flex;
+					justify-content: center;
+					.backdrop {
+						width: 90%;
+					}
+				}
+			}
 		}
+		input {
+            display: none;
+        }
 		nav {
+			padding-top: 5px;
 			width: 100%;
             text-align: center;
 			.controls {
 				display: block;
 				margin: 0 auto;
-				color: $primeryBorder;
+				color: $primaryBorder;
 				label {
 					position: relative;
 					display: inline-block;
@@ -88,7 +117,7 @@
 						left: 0;
 						height: 3px;
 						width: 100%;
-						background: $primeryBorder;
+						background: $primaryBorder;
 						z-index: 100;
 						.progressbarFill {
 							position: inherit;
@@ -115,22 +144,22 @@
         #banner4:checked ~ nav label:nth-of-type(4),
         #banner5:checked ~ nav label:nth-of-type(5) {
 			cursor: default;
-			color: $primeryColor;
-			transition: all 0.5s;
+			color: $primaryColor;
+			transition: all 10s;
 		}
 		#banner1:checked ~ nav label:nth-of-type(1) .progressbar,
 		#banner2:checked ~ nav label:nth-of-type(2) .progressbar,
 		#banner3:checked ~ nav label:nth-of-type(3) .progressbar,
         #banner4:checked ~ nav label:nth-of-type(4) .progressbar,
         #banner5:checked ~ nav label:nth-of-type(5) .progressbar {
-			background: $primeryColor;
+			background: $primaryColor;
 		}
 		#banner1:checked ~ nav label:nth-of-type(1) .progressbarFill,
 		#banner2:checked ~ nav label:nth-of-type(2) .progressbarFill,
 		#banner3:checked ~ nav label:nth-of-type(3) .progressbarFill,
         #banner4:checked ~ nav label:nth-of-type(4) .progressbarFill,
         #banner5:checked ~ nav label:nth-of-type(5) .progressbarFill {
-			animation: progressBarFill 5s linear;
+			animation: progressBarFill 10s linear;
 		}
 	}
 }

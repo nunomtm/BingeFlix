@@ -1,7 +1,7 @@
 main {
     padding-top: 35px;
     height: auto;
-    background: $primeryBackground;
+    background: $primaryBackground;
     .popular h2 {
         font-family: 'Nunito', sans-serif;
         font-size: 3.5rem;
@@ -32,28 +32,48 @@ main {
                     h4,
                     p {
                         font-family: 'Nunito', sans-serif;
-                        color: $primeryBorder;
+                        color: $primaryBorder;
                         text-align: left;
                     }
-            
                     h3 {
                         font-size: 1.6rem;
                         font-style: italic;
                         text-align: center;
                         padding-top: 15px;
                     }
-            
                     h4,
                     p {
                         font-size: 1.3rem;
                         text-transform: lowercase;
+                    }
+                    .btn {
+                        color: $primaryBorder;
+                        font-size: 1.4rem;
+                        text-align: center;
+                        margin-top: 15px;
+                        padding: 5px 20px;
+                        border: 1px solid $primaryBorder;
+                        border-radius: 15px;
+                        cursor: pointer;
+                        transition: ease 0.35s;
+                        display: inline-table;
+                        &:hover {
+                            // color: $primeryBackground;
+                            // background-color: $primeryColor;
+                            background: rgb(0,0,0);
+							background: linear-gradient(130deg, rgba(0,0,0,1) 0%, rgba(0,242,255,1) 100%);
+                            border: 1px solid $primaryBorder;
+                        }
+                        i {
+								padding-left: 5px;
+								font-size: 1.2rem;
+							}
                     }
                 }
                 
             } 
         }
     }
-    
 }
 
 

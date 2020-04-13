@@ -4,22 +4,58 @@ flixApp.baseUrl = 'https://api.themoviedb.org/3';
 flixApp.imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
 
 // Carousel Function
-function bannerSwitcher() {
-    next = $('.carousel').filter(':checked').next('.carousel');
-    if (next.length) next.prop('checked', true);
-    else $('.carousel').first().prop('checked', true);
-}
+jQuery(function($) {
+    let $slider = $('.slider');
+    let $slide = '.movieBanner';
+    let $transitionTime = 1000;
+    let $timeBetweenSlides = 8780;
 
-let bannerTimer = setInterval(bannerSwitcher, 5000);
+    function slides() {
+        return $slider.find($slide);
+    }
 
-$('nav .controls label').click(function () {
-    clearInterval(bannerTimer);
-    bannerTimer = setInterval(bannerSwitcher, 5000)
+    slides().fadeOut();
+
+    // set active classes
+    slides().first().addClass('active');
+    slides().first().fadeIn($transitionTime);
+
+    // auto scroll 
+    $interval = setInterval(
+        function() {
+            let $i = $slider.find($slide + '.active').index();
+
+            slides().eq($i).removeClass('active');
+            slides().eq($i).fadeOut($transitionTime);
+
+            if (slides().length == $i + 1) $i = -1;
+
+            slides().eq($i + 1).fadeIn($transitionTime);
+            slides().eq($i + 1).addClass('active');
+        }, 
+        $timeBetweenSlides + $transitionTime
+    );
+
+    // Carousel Controls Function
+    function controlSwitcher() {
+        next = $('.carousel').filter(':checked').next('.carousel');
+        if (next.length) next.prop('checked', true);
+        else $('.carousel').first().prop('checked', true);
+    }
+    
+    let bannerTimer = setInterval(controlSwitcher, 10000);
+    
+    $('nav .controls label').click(function() {
+        clearInterval(bannerTimer);
+        bannerTimer = setInterval(bannerSwitcher, 10000)
+    });
 });
 
 
+
+
 // Call to get the Top Rated Movies to display in the carousel
-flixApp.moviesHero = function () {
+flixApp.moviesHero = function() {
     $.ajax({
         url: `${flixApp.baseUrl}/movie/now_playing`,
         method: 'GET',
@@ -28,7 +64,7 @@ flixApp.moviesHero = function () {
             api_key: flixApp.key,
         }
     }).then(function (nowPlayingData) {
-        console.log(nowPlayingData.results)
+        // console.log(nowPlayingData.results)
         flixApp.displayNowPlayingMovies(nowPlayingData.results);
     }).fail(function (error) {
         alert('The movie could not be found')
@@ -36,21 +72,25 @@ flixApp.moviesHero = function () {
 }
 
 // To display Now Playing Movies on the carousel
-flixApp.displayNowPlayingMovies = function (playingMovies) {
+flixApp.displayNowPlayingMovies = function(playingMovies) {
     playingMovies.forEach(playingMovie => {
         const playingMovieDisplay = `
             <div class="movieBanner"> 
                 <div class="bannerInfo">
-                    <h3>${playingMovie.title}</h3>
+                    <div class="bannerDetails">
+                        <h3>${playingMovie.title}</h3>
+                        <p>⭐️ ${playingMovie.vote_average}</p>
+                    </div>
                     <h4>${playingMovie.release_date}</h4>
                     <p>${playingMovie.overview}</p>
+                    <a class="btn"> Trailer <i class="fas fa-play"></i></a>
                 </div>
                 <div class="bannerBackdrop">
                     <img class="backdrop" src="${flixApp.imageBaseUrl}/${playingMovie.poster_path}"/>
                 </div>
             </div>
         `;
-        $('.bannerContainer').append(playingMovieDisplay);
+        $('.slider').append(playingMovieDisplay);
     });
 }
 
@@ -65,6 +105,7 @@ flixApp.displayPopularMovies = function(details) {
                         <h3>${movie.title}</h3>
                         <h4>${movie.release_date}</h4>
                         <p>${movie.overview}</p>
+                        <a class="btn"> Trailer <i class="fas fa-play"></i></a>
                     </div>
                 </div>
             </div>
@@ -76,6 +117,8 @@ flixApp.displayPopularMovies = function(details) {
         $('.poster').on('click', function() {
             $('.movieInfo').stop().slideUp('slow');
             $(this).next(".movieInfo").stop().slideToggle('slow');
+            // let movieID = `${movie.id}`
+            console.log(`${movie.id}`);
 
             if (display === true) {
                 $('.movieInfo').show();
@@ -86,7 +129,7 @@ flixApp.displayPopularMovies = function(details) {
     });
 }
 
-    // < a href = "https://www.youtube.com/watch?v=${movie.results[0].id}" > Trailer</a >
+// < a href = "https://www.youtube.com/embed/${}" > Trailer</a >
 
 // Call to get the data from API about the Popular Movies
 flixApp.popularMovies = function() {
@@ -106,26 +149,26 @@ flixApp.popularMovies = function() {
 }
 
 // Call to get the video ID to play on YouTube
-// flixApp.movieVideos = function () {
+// flixApp.movieVideos = function() {
 //     $.ajax({
-//         url: `${flixApp.baseUrl}/movie/533ec654c3a36854480003eb/videos`,
+//         url: `${flixApp.baseUrl}/movie/${movieID}/videos`,
 //         method: 'GET',
 //         dataType: 'json',
 //         data: {
 //             api_key: flixApp.key
 //         }
-//     }).then(function (videoData) {
-//         console.log(videoData.results[0].id)
-//         // flixApp.displayMovieVideos(videoData.results[0].id)
+//     }).then(function(videoData) {
+//         // console.log(videoData.results[0].key)
+//         flixApp.displayMovieVideos(videoData.results[0].key)
 //     }).fail(function (error) {
 //         alert('The movie could not be found')
 //     });
 // }
 
 flixApp.init = function() {
+    flixApp.moviesHero();
     flixApp.popularMovies();
     // flixApp.movieVideos();
-    flixApp.moviesHero();
 }
 
 $(function() {

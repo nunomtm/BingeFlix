@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <script src="https://kit.fontawesome.com/3d22ae5abd.js" crossorigin="anonymous"></script> -->
-    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Nunito&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3d22ae5abd.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Nunito&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./styles/styles.css">
     <title>BingeFlix</title>
@@ -16,54 +16,48 @@
 
     <header>
         <div class="navContainer wrapper">
-            <nav class="nav">
-                <h1 class="logo">Bingeflix</h1>
+            <!-- <nav class="nav">
                 <ul>
                     <li><a class="hvr-wobble-vertical" href="index.html">Home</a></li>
                     <li><a class="hvr-wobble-vertical" href="#popular">Popular Movies</a></li>
                     <li><a class="hvr-wobble-vertical" href="#">My List</a></li>
                     <li><a class="hvr-wobble-vertical" href="#">Sign In</a></li>
                 </ul>
+            </nav> -->
+            
+            <h1 class="logo">Bingeflix</h1>
+
+            <nav class="mobileNav">
+                <label for="toggleMenu"><i class="fas fa-film"></i></label>
+                <input type="checkbox" id="toggleMenu" name="toggleMenu">
+                <ul class="navMobile">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#popular">Popular Movies</a></li>
+                    <li><a href="#">My List</a></li>
+                    <li><a href="#">Sign In</a></li>
+                </ul>
             </nav>
         </div>
-        
-        <nav class="mobileNav">
-            <label for="toggleMenu"><i class="fa fa-bars"></i> </label>
-            <input type="checkbox" id="toggleMenu" name="toggleMenu">
-            <ul class="navMobile">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#popular">Popular Movies</a></li>
-                <li><a href="#">My List</a></li>
-                <li><a href="#">Sign In</a></li>
-            </ul>
-        </nav>
     </header>
     
     <section id="carouselContainer">
         <div class="contentSlider wrapper">
-            <div class="slider">
-                <div class="bannerContainer banner">
-                    <!-- <div class="heroBanner"></div> -->
-                </div>
-            </div>
-
             <input type="radio" id="banner1" class="carousel" name="banner" checked>
             <input type="radio" id="banner2" class="carousel" name="banner">
             <input type="radio" id="banner3" class="carousel" name="banner">
             <input type="radio" id="banner4" class="carousel" name="banner">
             <input type="radio" id="banner5" class="carousel" name="banner">
+            
+            <div class="slider"></div>
+
 
             <nav>
                 <div class="controls">
-                    <label for="banner1"><span class="progressbar"><span
-                        class="progressbarFill"></span></span></label>
-                    <label for="banner2"><span class="progressbar"><span
-                        class="progressbarFill"></span></span></label>
-                    <label for="banner3"><span class="progressbar"><span
-                        class="progressbarFill"></span></span></label>
-                    <label for="banner4"><span class="progressbar"><span
-                        class="progressbarFill"></span></span></label>
-                    <label for="banner5"><span class="progressbar"><span      class="progressbarFill"></span></span></label>
+                    <label for="banner1"><span class="progressbar"><span class="progressbarFill"></span></span></label>
+                    <label for="banner2"><span class="progressbar"><span class="progressbarFill"></span></span></label>
+                    <label for="banner3"><span class="progressbar"><span class="progressbarFill"></span></span></label>
+                    <label for="banner4"><span class="progressbar"><span class="progressbarFill"></span></span></label>
+                    <label for="banner5"><span class="progressbar"><span class="progressbarFill"></span></span></label>
                 </div>
             </nav>
         </div>
@@ -80,7 +74,7 @@
     </main>
 
     <footer>
-        <p class="wrapper">Created by Nuno Macedo 2020 &copy;</p>
+        <p class="wrapper">Created by Nuno Macedo 2020 &copy; powered by TMDB</p>
     </footer>
 
     <script src='https://code.jquery.com/jquery-3.4.1.min.js' integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>

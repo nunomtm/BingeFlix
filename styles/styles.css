@@ -238,11 +238,11 @@ html {
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
+  font-family: 'Nunito', sans-serif;
 }
 
 body {
   margin: 0 auto;
-  font-family: 'Nunito', sans-serif;
   color: black;
 }
 
@@ -259,7 +259,6 @@ img {
 
 s
 h1 {
-  font-family: 'Bebas Neue', cursive;
   margin: 0;
 }
 
@@ -282,10 +281,7 @@ header {
 }
 
 header .navContainer {
-  min-height: 10vh;
-}
-
-header .navContainer .nav {
+  min-height: 5vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -297,49 +293,80 @@ header .navContainer .nav {
           align-items: center;
 }
 
-header .navContainer .nav .logo {
-  font-size: 5rem;
-  color: #d81f26;
-  margin: 0;
+header .navContainer nav.mobileNav input[type="checkbox"]:checked + ul.navMobile {
+  right: 0;
 }
 
-header .navContainer .nav ul {
+header .navContainer nav.mobileNav input[type="checkbox"] {
+  display: none;
+}
+
+header .navContainer nav.mobileNav label[for="toggleMenu"] {
+  color: #000;
+  z-index: 10;
+}
+
+header .navContainer nav.mobileNav i {
+  font-size: 3.5rem;
+  color: #00f2ff;
+}
+
+header .navContainer .navMobile {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: rgba(0, 242, 255, 0.95);
   list-style: none;
+  position: fixed;
+  z-index: 10;
+  width: 200px;
+  right: -200px;
+  height: 200px;
+  top: 52px;
   margin: 0;
-  width: 50%;
+  padding: 0 10px;
+  border-radius: 15px 0 15px 15px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
-header .navContainer .nav ul li {
-  font-size: 2rem;
-  -webkit-transition: 0.35s;
-  transition: 0.35s;
+header .navContainer .navMobile li {
+  padding: 8% 0;
 }
 
-header .navContainer .nav ul li a {
-  font-family: 'Bebas Neue', cursive;
-  color: #d81f26;
+header .navContainer .navMobile li a {
+  font-size: 1.6rem;
+  color: #000;
   text-decoration: none;
-  border-bottom: 2px solid transparent;
+  text-transform: uppercase;
+  display: inline-block;
+  border-bottom: 3px solid transparent;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
 }
 
-header .navContainer .nav ul li a:hover, header .navContainer .nav ul li a:focus {
-  border-bottom: 2px solid #fff;
+header .navContainer .navMobile li a:hover, header .navContainer .navMobile li a:focus {
+  border-bottom: 3px solid #fff;
 }
 
-header .mobileNav {
-  display: none;
+header .navContainer .logo {
+  font-size: 4.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #00f2ff;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Carousel Styles */
 #carouselContainer {
-  height: 85vh;
-  background-color: #000;
+  height: 89vh;
+  background: #020024;
+  background: linear-gradient(135deg, #020024 20%, #00f2ff 50%, #020024 80%);
 }
 
 #carouselContainer .contentSlider {
@@ -347,37 +374,26 @@ header .mobileNav {
   height: 100%;
 }
 
-#carouselContainer .contentSlider input {
-  display: none;
-}
-
 #carouselContainer .contentSlider .slider {
-  position: relative;
   width: 100%;
   height: inherit;
+  overflow: hidden;
 }
 
-#carouselContainer .contentSlider .slider .bannerContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
+#carouselContainer .contentSlider .slider .movieBanner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: inherit;
   height: inherit;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
-#carouselContainer .contentSlider .slider .bannerContainer .movieBanner {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
-#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo {
-  width: 50%;
-  height: 85vh;
+#carouselContainer .contentSlider .slider .movieBanner .bannerInfo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -388,35 +404,79 @@ header .mobileNav {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  text-align: left;
+  text-align: justify;
+  width: 50%;
+  height: 89vh;
+  padding: 0 40px;
 }
 
-#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo h3,
-#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo h4,
-#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo p {
+#carouselContainer .contentSlider .slider .movieBanner .bannerInfo .bannerDetails {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#carouselContainer .contentSlider .slider .movieBanner .bannerInfo .bannerDetails p {
+  font-size: 2.5rem;
+}
+
+#carouselContainer .contentSlider .slider .movieBanner .bannerInfo h3,
+#carouselContainer .contentSlider .slider .movieBanner .bannerInfo h4,
+#carouselContainer .contentSlider .slider .movieBanner .bannerInfo p,
+#carouselContainer .contentSlider .slider .movieBanner .bannerInfo a {
   padding: 8px;
   margin: 0;
   padding: 0;
   color: #fff;
 }
 
-#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo h3 {
-  font-size: 3.5rem;
+#carouselContainer .contentSlider .slider .movieBanner .bannerInfo h3 {
+  font-size: 5rem;
 }
 
-#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo h4 {
+#carouselContainer .contentSlider .slider .movieBanner .bannerInfo h4 {
   font-size: 1.8rem;
   padding-top: 15px;
 }
 
-#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerInfo p {
+#carouselContainer .contentSlider .slider .movieBanner .bannerInfo p {
   font-size: 1.4rem;
   letter-spacing: 1.2px;
   line-height: 2;
   padding-top: 15px;
 }
 
-#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerBackdrop {
+#carouselContainer .contentSlider .slider .movieBanner .bannerInfo .btn {
+  font-size: 1.6rem;
+  text-align: center;
+  margin-top: 15px;
+  padding: 5px 20px;
+  border: 1px solid #fff;
+  border-radius: 15px;
+  cursor: pointer;
+  -webkit-transition: ease 0.35s;
+  transition: ease 0.35s;
+  display: inline-table;
+}
+
+#carouselContainer .contentSlider .slider .movieBanner .bannerInfo .btn:hover {
+  background: black;
+  background: linear-gradient(130deg, black 0%, #00f2ff 100%);
+  border: 1px solid #fff;
+}
+
+#carouselContainer .contentSlider .slider .movieBanner .bannerInfo .btn i {
+  padding-left: 5px;
+  font-size: 1.4rem;
+}
+
+#carouselContainer .contentSlider .slider .movieBanner .bannerBackdrop {
   width: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -426,11 +486,16 @@ header .mobileNav {
           justify-content: center;
 }
 
-#carouselContainer .contentSlider .slider .bannerContainer .movieBanner .bannerBackdrop .backdrop {
-  width: 78%;
+#carouselContainer .contentSlider .slider .movieBanner .bannerBackdrop .backdrop {
+  width: 90%;
+}
+
+#carouselContainer .contentSlider input {
+  display: none;
 }
 
 #carouselContainer .contentSlider nav {
+  padding-top: 5px;
   width: 100%;
   text-align: center;
 }
@@ -488,9 +553,9 @@ header .mobileNav {
 #carouselContainer .contentSlider #banner4:checked ~ nav label:nth-of-type(4),
 #carouselContainer .contentSlider #banner5:checked ~ nav label:nth-of-type(5) {
   cursor: default;
-  color: #d81f26;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
+  color: #00f2ff;
+  -webkit-transition: all 10s;
+  transition: all 10s;
 }
 
 #carouselContainer .contentSlider #banner1:checked ~ nav label:nth-of-type(1) .progressbar,
@@ -498,7 +563,7 @@ header .mobileNav {
 #carouselContainer .contentSlider #banner3:checked ~ nav label:nth-of-type(3) .progressbar,
 #carouselContainer .contentSlider #banner4:checked ~ nav label:nth-of-type(4) .progressbar,
 #carouselContainer .contentSlider #banner5:checked ~ nav label:nth-of-type(5) .progressbar {
-  background: #d81f26;
+  background: #00f2ff;
 }
 
 #carouselContainer .contentSlider #banner1:checked ~ nav label:nth-of-type(1) .progressbarFill,
@@ -506,8 +571,8 @@ header .mobileNav {
 #carouselContainer .contentSlider #banner3:checked ~ nav label:nth-of-type(3) .progressbarFill,
 #carouselContainer .contentSlider #banner4:checked ~ nav label:nth-of-type(4) .progressbarFill,
 #carouselContainer .contentSlider #banner5:checked ~ nav label:nth-of-type(5) .progressbarFill {
-  -webkit-animation: progressBarFill 5s linear;
-          animation: progressBarFill 5s linear;
+  -webkit-animation: progressBarFill 10s linear;
+          animation: progressBarFill 10s linear;
 }
 
 /* Animations */
@@ -594,6 +659,31 @@ main .results .movieDetails .moviePoster .movieInfo p {
   text-transform: lowercase;
 }
 
+main .results .movieDetails .moviePoster .movieInfo .btn {
+  color: #fff;
+  font-size: 1.4rem;
+  text-align: center;
+  margin-top: 15px;
+  padding: 5px 20px;
+  border: 1px solid #fff;
+  border-radius: 15px;
+  cursor: pointer;
+  -webkit-transition: ease 0.35s;
+  transition: ease 0.35s;
+  display: inline-table;
+}
+
+main .results .movieDetails .moviePoster .movieInfo .btn:hover {
+  background: black;
+  background: linear-gradient(130deg, black 0%, #00f2ff 100%);
+  border: 1px solid #fff;
+}
+
+main .results .movieDetails .moviePoster .movieInfo .btn i {
+  padding-left: 5px;
+  font-size: 1.2rem;
+}
+
 footer {
   height: 5vh;
   background: #000;
@@ -611,7 +701,7 @@ footer p {
       align-self: center;
   font-size: 2rem;
   text-align: center;
-  color: #d81f26;
+  color: #00f2ff;
   margin: 0;
   padding: 0;
 }
@@ -623,9 +713,6 @@ footer p {
 }
 
 @media (max-width: 768px) {
-  header h1::before, header h1::after {
-    top: 12px;
-  }
   .flexInputs {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
