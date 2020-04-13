@@ -3,6 +3,9 @@ flixApp.key = 'acf63cd8f0f564cb943004e66b74e67a';
 flixApp.baseUrl = 'https://api.themoviedb.org/3';
 flixApp.imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
 
+flixApp.movieID;
+flixApp.movieTrailer;
+
 // Carousel Function
 jQuery(function($) {
     let $slider = $('.slider');
@@ -50,9 +53,6 @@ jQuery(function($) {
         bannerTimer = setInterval(bannerSwitcher, 10000)
     });
 });
-
-
-
 
 // Call to get the Top Rated Movies to display in the carousel
 flixApp.moviesHero = function() {
@@ -105,20 +105,20 @@ flixApp.displayPopularMovies = function(details) {
                         <h3>${movie.title}</h3>
                         <h4>${movie.release_date}</h4>
                         <p>${movie.overview}</p>
-                        <a class="btn"> Trailer <i class="fas fa-play"></i></a>
+                        <a href ="https://www.youtube.com/embed/${flixApp.movieTrailer}" class="btn"> Trailer <i class="fas fa-play"></i></a>
                     </div>
                 </div>
             </div>
         `;
         $('.results').append(movieDisplay);
-
+        
         $('.movieInfo').hide();
 
         $('.poster').on('click', function() {
             $('.movieInfo').stop().slideUp('slow');
             $(this).next(".movieInfo").stop().slideToggle('slow');
-            // let movieID = `${movie.id}`
-            console.log(`${movie.id}`);
+            flixApp.movieID = `${movie.id}`
+            flixApp.movieVideos(flixApp.movieID);
 
             if (display === true) {
                 $('.movieInfo').show();
@@ -129,7 +129,7 @@ flixApp.displayPopularMovies = function(details) {
     });
 }
 
-// < a href = "https://www.youtube.com/embed/${}" > Trailer</a >
+//link to yourtube video < a href = "https://www.youtube.com/embed/${}" > Trailer</a >
 
 // Call to get the data from API about the Popular Movies
 flixApp.popularMovies = function() {
@@ -149,26 +149,26 @@ flixApp.popularMovies = function() {
 }
 
 // Call to get the video ID to play on YouTube
-// flixApp.movieVideos = function() {
-//     $.ajax({
-//         url: `${flixApp.baseUrl}/movie/${movieID}/videos`,
-//         method: 'GET',
-//         dataType: 'json',
-//         data: {
-//             api_key: flixApp.key
-//         }
-//     }).then(function(videoData) {
-//         // console.log(videoData.results[0].key)
-//         flixApp.displayMovieVideos(videoData.results[0].key)
-//     }).fail(function (error) {
-//         alert('The movie could not be found')
-//     });
-// }
+flixApp.movieVideos = function() {
+    $.ajax({
+        url: `${flixApp.baseUrl}/movie/${flixApp.movieID}/videos`,
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            api_key: flixApp.key
+        }
+    }).then(function(videoData) {;
+        console.log(videoData.results[0].key);
+        flixApp.movieTrailer = videoData.results[0].key;
+        // console.log(flixApp.movieTrailer);
+    }).fail(function (error) {
+        alert('We have a problem!')
+    });
+}
 
 flixApp.init = function() {
     flixApp.moviesHero();
     flixApp.popularMovies();
-    // flixApp.movieVideos();
 }
 
 $(function() {

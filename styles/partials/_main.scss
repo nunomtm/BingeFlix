@@ -50,6 +50,7 @@ main {
                         color: $primaryBorder;
                         font-size: 1.4rem;
                         text-align: center;
+                        text-decoration: none;
                         margin-top: 15px;
                         padding: 5px 20px;
                         border: 1px solid $primaryBorder;
@@ -58,8 +59,6 @@ main {
                         transition: ease 0.35s;
                         display: inline-table;
                         &:hover {
-                            // color: $primeryBackground;
-                            // background-color: $primeryColor;
                             background: rgb(0,0,0);
 							background: linear-gradient(130deg, rgba(0,0,0,1) 0%, rgba(0,242,255,1) 100%);
                             border: 1px solid $primaryBorder;
