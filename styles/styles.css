@@ -496,7 +496,7 @@ header .navContainer .logo {
 }
 
 #carouselContainer .contentSlider nav {
-  padding-top: 5px;
+  padding-top: 15px;
   width: 100%;
   text-align: center;
 }
@@ -553,10 +553,9 @@ header .navContainer .logo {
 #carouselContainer .contentSlider #banner3:checked ~ nav label:nth-of-type(3),
 #carouselContainer .contentSlider #banner4:checked ~ nav label:nth-of-type(4),
 #carouselContainer .contentSlider #banner5:checked ~ nav label:nth-of-type(5) {
-  cursor: default;
   color: #00f2ff;
-  -webkit-transition: all 10s;
-  transition: all 10s;
+  -webkit-transition: all .10s;
+  transition: all .10s;
 }
 
 #carouselContainer .contentSlider #banner1:checked ~ nav label:nth-of-type(1) .progressbar,

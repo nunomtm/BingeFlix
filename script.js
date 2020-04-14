@@ -2,6 +2,7 @@ const flixApp = {}
 flixApp.key = 'acf63cd8f0f564cb943004e66b74e67a';
 flixApp.baseUrl = 'https://api.themoviedb.org/3';
 flixApp.imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
+flixApp.youTubeBaseUrl = 'https://www.youtube.com/embed'
 
 flixApp.movieID;
 flixApp.movieTrailer;
@@ -65,71 +66,29 @@ flixApp.moviesHero = function() {
         }
     }).then(function (nowPlayingData) {
         // console.log(nowPlayingData.results)
-        flixApp.displayNowPlayingMovies(nowPlayingData.results);
+        flixApp.nowPlaying = nowPlayingData.results.slice(0, 5);
+        flixApp.nowPlaying.forEach(playingMovie => {
+            const playingMovieDisplay = `
+                <div class="movieBanner"> 
+                    <div class="bannerInfo">
+                        <div class="bannerDetails">
+                            <h3>${playingMovie.title}</h3>
+                            <p>⭐️ ${playingMovie.vote_average}</p>
+                        </div>
+                        <h4>${playingMovie.release_date}</h4>
+                        <p>${playingMovie.overview}</p>
+                    </div>
+                    <div class="bannerBackdrop">
+                        <img class="backdrop" src="${flixApp.imageBaseUrl}/${playingMovie.poster_path}"/>
+                    </div>
+                </div>
+            `;
+            $('.slider').append(playingMovieDisplay);
+        });
     }).fail(function (error) {
         alert('The movie could not be found')
     });
 }
-
-// To display Now Playing Movies on the carousel
-flixApp.displayNowPlayingMovies = function(playingMovies) {
-    playingMovies.forEach(playingMovie => {
-        const playingMovieDisplay = `
-            <div class="movieBanner"> 
-                <div class="bannerInfo">
-                    <div class="bannerDetails">
-                        <h3>${playingMovie.title}</h3>
-                        <p>⭐️ ${playingMovie.vote_average}</p>
-                    </div>
-                    <h4>${playingMovie.release_date}</h4>
-                    <p>${playingMovie.overview}</p>
-                    <a class="btn"> Trailer <i class="fas fa-play"></i></a>
-                </div>
-                <div class="bannerBackdrop">
-                    <img class="backdrop" src="${flixApp.imageBaseUrl}/${playingMovie.poster_path}"/>
-                </div>
-            </div>
-        `;
-        $('.slider').append(playingMovieDisplay);
-    });
-}
-
-// To display Popular Movies on the page
-flixApp.displayPopularMovies = function(details) {
-    details.forEach(movie => {
-        const movieDisplay = `
-            <div class="movieDetails"> 
-                <div class="moviePoster">
-                    <img class="poster" src="${flixApp.imageBaseUrl}/${movie.poster_path}"/>
-                    <div class="movieInfo">
-                        <h3>${movie.title}</h3>
-                        <h4>${movie.release_date}</h4>
-                        <p>${movie.overview}</p>
-                        <a href ="https://www.youtube.com/embed/${flixApp.movieTrailer}" class="btn"> Trailer <i class="fas fa-play"></i></a>
-                    </div>
-                </div>
-            </div>
-        `;
-        $('.results').append(movieDisplay);
-        
-        $('.movieInfo').hide();
-
-        $('.poster').on('click', function() {
-            $('.movieInfo').stop().slideUp('slow');
-            $(this).next(".movieInfo").stop().slideToggle('slow');
-            flixApp.movieID = `${movie.id}`
-            flixApp.movieVideos(flixApp.movieID);
-
-            if (display === true) {
-                $('.movieInfo').show();
-            } else if (display === false) {
-                $('.movieInfo').hide();
-            }
-        });
-    });
-}
-
-//link to yourtube video < a href = "https://www.youtube.com/embed/${}" > Trailer</a >
 
 // Call to get the data from API about the Popular Movies
 flixApp.popularMovies = function() {
@@ -142,7 +101,37 @@ flixApp.popularMovies = function() {
         }
     }).then(function(popularData) {
         // console.log(popularData.results)
-        flixApp.displayPopularMovies(popularData.results)
+        flixApp.popular = popularData.results;
+        flixApp.popular.forEach(movie => {
+            const movieDisplay = `
+                <div class="movieDetails"> 
+                    <div class="moviePoster">
+                        <img class="poster" src="${flixApp.imageBaseUrl}/${movie.poster_path}"/>
+                        <div class="movieInfo">
+                            <h3>${movie.title}</h3>
+                            <h4>${movie.release_date}</h4>
+                            <p>${movie.overview}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            $('.results').append(movieDisplay);
+
+            $('.movieInfo').hide();
+
+            $('.poster').on('click', function () {
+                $('.movieInfo').stop().slideUp('slow');
+                $(this).next(".movieInfo").stop().slideToggle('slow');
+                flixApp.movieID = `${movie.id}`
+                flixApp.movieVideos(flixApp.movieID);
+
+                if (display === true) {
+                    $('.movieInfo').show();
+                } else if (display === false) {
+                    $('.movieInfo').hide();
+                }
+            });
+        });
     }).fail(function(error) {
         alert('The movie could not be found')
     });
@@ -157,10 +146,12 @@ flixApp.movieVideos = function() {
         data: {
             api_key: flixApp.key
         }
-    }).then(function(videoData) {;
-        console.log(videoData.results[0].key);
+    }).then(function(videoData) {
+        // console.log(videoData.results[0].key);
         flixApp.movieTrailer = videoData.results[0].key;
-        // console.log(flixApp.movieTrailer);
+       
+        $('.movieInfo').append(`<a href="${flixApp.youTubeBaseUrl}/${flixApp.movieTrailer}" class="btn"> Trailer <i class="fas fa-play"></i></a>`);
+
     }).fail(function (error) {
         alert('We have a problem!')
     });

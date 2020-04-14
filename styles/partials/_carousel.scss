@@ -94,7 +94,7 @@
             display: none;
         }
 		nav {
-			padding-top: 5px;
+			padding-top: 15px;
 			width: 100%;
             text-align: center;
 			.controls {
@@ -144,9 +144,8 @@
 		#banner3:checked ~ nav label:nth-of-type(3),
         #banner4:checked ~ nav label:nth-of-type(4),
         #banner5:checked ~ nav label:nth-of-type(5) {
-			cursor: default;
 			color: $primaryColor;
-			transition: all 10s;
+			transition: all .10s;
 		}
 		#banner1:checked ~ nav label:nth-of-type(1) .progressbar,
 		#banner2:checked ~ nav label:nth-of-type(2) .progressbar,
