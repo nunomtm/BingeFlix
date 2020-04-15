@@ -2,10 +2,11 @@ const flixApp = {}
 flixApp.key = 'acf63cd8f0f564cb943004e66b74e67a';
 flixApp.baseUrl = 'https://api.themoviedb.org/3';
 flixApp.imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
-flixApp.youTubeBaseUrl = 'https://www.youtube.com/embed'
+flixApp.youTubeBaseUrl = 'https://www.youtube-nocookie.com/embed'
 
 flixApp.movieID;
-flixApp.movieTrailer;
+flixApp.movieTrailer = '';
+flixApp.date;
 
 // Carousel Function
 jQuery(function($) {
@@ -32,7 +33,7 @@ jQuery(function($) {
             slides().eq($i).removeClass('active');
             slides().eq($i).fadeOut($transitionTime);
 
-            if (slides().length == $i + 1) $i = -1;
+            if(slides().length == $i + 1) $i = -1;
 
             slides().eq($i + 1).fadeIn($transitionTime);
             slides().eq($i + 1).addClass('active');
@@ -67,6 +68,9 @@ flixApp.moviesHero = function() {
     }).then(function (nowPlayingData) {
         // console.log(nowPlayingData.results)
         flixApp.nowPlaying = nowPlayingData.results.slice(0, 5);
+        flixApp.date = nowPlayingData.results[0].release_date.slice(0, 4);
+        // console.log(flixApp.date);
+        
         flixApp.nowPlaying.forEach(playingMovie => {
             const playingMovieDisplay = `
                 <div class="movieBanner"> 
@@ -75,7 +79,7 @@ flixApp.moviesHero = function() {
                             <h3>${playingMovie.title}</h3>
                             <p>⭐️ ${playingMovie.vote_average}</p>
                         </div>
-                        <h4>${playingMovie.release_date}</h4>
+                        <h4>${flixApp.date}</h4>
                         <p>${playingMovie.overview}</p>
                     </div>
                     <div class="bannerBackdrop">
@@ -108,9 +112,9 @@ flixApp.popularMovies = function() {
                     <div class="moviePoster">
                         <img class="poster" src="${flixApp.imageBaseUrl}/${movie.poster_path}"/>
                         <div class="movieInfo">
-                            <h3>${movie.title}</h3>
-                            <h4>${movie.release_date}</h4>
+                            <h3>${movie.title} (${movie.release_date})</h3>
                             <p>${movie.overview}</p>
+                            <h4 class="fav"><i class="far fa-heart"></i> Add to list</h4> 
                         </div>
                     </div>
                 </div>
@@ -123,6 +127,8 @@ flixApp.popularMovies = function() {
                 $('.movieInfo').stop().slideUp('slow');
                 $(this).next(".movieInfo").stop().slideToggle('slow');
                 flixApp.movieID = `${movie.id}`
+                    
+                // console.log(flixApp.movieID);
                 flixApp.movieVideos(flixApp.movieID);
 
                 if (display === true) {
@@ -147,15 +153,23 @@ flixApp.movieVideos = function() {
             api_key: flixApp.key
         }
     }).then(function(videoData) {
-        // console.log(videoData.results[0].key);
-        flixApp.movieTrailer = videoData.results[0].key;
-       
-        $('.movieInfo').append(`<a href="${flixApp.youTubeBaseUrl}/${flixApp.movieTrailer}" class="btn"> Trailer <i class="fas fa-play"></i></a>`);
-
+        // console.log(videoData.results);
+        flixApp.movieTrailer = videoData.results.slice(0, 1);
+        flixApp.movieTrailer.forEach(trailer => {
+            const displayTrailer = `
+                <div class="movieInfo">
+                    <a href="${flixApp.youTubeBaseUrl}/${trailer.key}" target="_blank" class="btn"> Trailer <i class="fas fa-play"></i></a>
+                </div>
+            `;
+            $('.movieInfo').append(displayTrailer);
+        });
     }).fail(function (error) {
         alert('We have a problem!')
     });
 }
+
+// FirebaseUI config.
+
 
 flixApp.init = function() {
     flixApp.moviesHero();

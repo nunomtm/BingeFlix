@@ -41,7 +41,29 @@ main {
                         text-align: center;
                         padding-top: 15px;
                     }
-                    h4,
+                    h4 {
+                        font-size: 1.4rem;
+                        border-bottom: 2px solid transparent;
+                        border: $primaryColor;
+                        position: relative;
+                        &:after {
+                            content: '';
+                            position: absolute;
+                            transform: scaleX(0);
+                            transition: all ease-in-out 0.5s;
+                            border-bottom: 2px solid transparent;
+                            top: 20px;
+                            left: 0;
+                        }
+                        &:hover,
+                        &:focus {
+                            &:after {
+                            border-bottom: 2px solid $primaryColor;
+                            transform: scaleX(1);
+                            width: 40%;
+                            }
+                        }
+                    }
                     p {
                         font-size: 1.3rem;
                         text-transform: lowercase;
@@ -51,13 +73,16 @@ main {
                         font-size: 1.4rem;
                         text-align: center;
                         text-decoration: none;
-                        margin-top: 15px;
+                        margin-top: 10px;
                         padding: 5px 20px;
                         border: 1px solid $primaryBorder;
                         border-radius: 15px;
                         cursor: pointer;
-                        transition: ease 0.35s;
+                        transition: transform 80ms ease-in;
                         display: inline-table;
+                        &:active {
+                            transform: scale(0.95);
+                        }
                         &:hover {
                             background: rgb(0,0,0);
 							background: linear-gradient(130deg, rgba(0,0,0,1) 0%, rgba(0,242,255,1) 100%);
@@ -74,35 +99,3 @@ main {
         }
     }
 }
-
-
-
-    // form {
-    //     fieldset {
-    //         display: flex;
-    //         margin: 0;
-    //         padding: 0;
-    //         border: none;
-    //         label {
-    //             text-align: center;
-    //             font-size: 3rem;
-    //             color: $primeryColor;
-    //         }
-    //         input[type="search"],
-    //         select, 
-    //         input[type="text"] {
-    //             font-size: 2rem;
-    //             border-radius: 5px;
-    //             &:focus {
-    //                 background: $secondaryPopColor;
-    //                 color: $primeryColor;
-    //             }
-    //         }
-    //         .search {
-    //             height: 100%;
-    //         }
-    //     }
-    // }
-
-
-// .results {}
