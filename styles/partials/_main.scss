@@ -29,7 +29,7 @@ main {
                 }
                 .movieInfo {
                     h3,
-                    h4,
+                    .favBtn,
                     p {
                         font-family: 'Nunito', sans-serif;
                         color: $primaryBorder;
@@ -41,11 +41,15 @@ main {
                         text-align: center;
                         padding-top: 15px;
                     }
-                    h4 {
+                    .favBtn {
                         font-size: 1.4rem;
+                        background: $primaryBackground;
                         border-bottom: 2px solid transparent;
                         border: $primaryColor;
                         position: relative;
+                        cursor: pointer;
+                        margin: 10px 0;
+                        padding: 0;
                         &:after {
                             content: '';
                             position: absolute;
@@ -60,8 +64,11 @@ main {
                             &:after {
                             border-bottom: 2px solid $primaryColor;
                             transform: scaleX(1);
-                            width: 40%;
+                            width: 100%;
                             }
+                        }
+                        .fa-check-circle {
+                            color: $primaryColor;
                         }
                     }
                     p {

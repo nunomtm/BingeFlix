@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://kit.fontawesome.com/3d22ae5abd.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/fe0b8f1505.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Nunito&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./styles/styles.css">
@@ -16,29 +16,138 @@
 
     <header>
         <div class="navContainer wrapper">
-            <h1 class="logo">Bingeflix</h1>
+            
+            <a href="index.html">
+                <h1 class="logo">Bingeflix</h1>
+            </a>
             
             <nav class="nav">
+                <form class="search-container">
+                    <i class="fas fa-times"></i>
+                    <input type="text" id="searchTxt" placeholder="">
+                    <a href="#" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </a>
+                </form>
                 <ul>
-                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#popular"><i class="fas fa-chart-line"></i> Popular Movies</a></li>
-                    <li><a href="#"><i class="fas fa-heart"></i> Favourites</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i> Sign In</a></li>
+                    <li>
+                        <a href="#popular">
+                            <i class="fas fa-chart-line"></i> 
+                            Popular Movies
+                        </a>
+                    </li>
+                    <li class="loggedIn">
+                        <a href="#favourites">
+                            <i class="fas fa-heart"></i>
+                            Favourites
+                        </a>
+                    </li>
+                    <li class="loggedIn">
+                        <a href="#" id="logOut">
+                            <i class="fas fa-door-open"></i> 
+                            Logout
+                        </a>
+                    </li>
+                    <li class="loggedOut" id="signInTab">
+                        <a href="#account">
+                            <i class="fas fa-user"></i> 
+                            Sign In
+                        </a>
+                    </li>
                 </ul>
             </nav>
             
             <nav class="mobileNav">
+                <a href="index.html">
+                    <h1 class="logo">Bingeflix</h1>
+                </a>
+
                 <label for="toggleMenu"><i class="fas fa-film"></i></label>
                 <input type="checkbox" id="toggleMenu" name="toggleMenu">
+
                 <ul class="navMobile">
-                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#popular"><i class="fas fa-chart-line"></i> Popular Movies</a></li>
-                    <li><a href="#"><i class="fas fa-heart"></i> Favourites</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i> Sign In</a></li>
+                    <li>
+                        <a href="#popular">
+                            <i class="fas fa-chart-line"></i>
+                            Popular Movies
+                        </a>
+                    </li>
+                    <li class="loggedIn">
+                        <a href="#favourites">
+                            <i class="fas fa-heart"></i>
+                            Favourites
+                        </a>
+                    </li>
+                    <li class="loggedIn">
+                        <a href="index.html" id="logOut">
+                            <i class="fas fa-door-open"></i>
+                            Logout
+                        </a>
+                    </li>
+                    <li class="loggedOut" id="signInTab">
+                        <a href="#account">
+                            <i class="fas fa-user"></i>
+                            Sign In
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <!-- Sign in html -->
+    <section id="account">
+        <div class="container wrapper" id="container">
+            <div class="formContainer signUpContainer">
+                <form id="signUpForm" action="#">
+                    <h1>Create Account</h1>
+                    <!-- <div class="socialContainer">
+                            <a href="#" class="social"><i class="fab fa-google"></i></a>
+                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    <span>or use your email for registration</span> -->
+                    <!-- <input type="text" placeholder="Name"/> -->
+                    <!-- <label for="signUpEmail">Email address</label> -->
+                    <input type="email" placeholder="Email" id="signUpEmail" required />
+                    <!-- <label for="signUpPassword">Choose password</label> -->
+                    <input type="password" placeholder="Password" id="signUpPassword" required />
+                    <button>Sign Up</button>
+                </form>
+            </div>
+            <div class="formContainer signInContainer">
+                <form id="signInForm" action="#">
+                    <h1>Sign in</h1>
+                    <!-- <div class="socialContainer">
+                            <a href="#" class="social"><i class="fab fa-google"></i></a>
+                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    <span>or use your account</span> -->
+                    <!-- <label for="signInEmail">Email address</label> -->
+                    <input type="email" placeholder="Email" id="signInEmail" required />
+                    <!-- <label for="signIpPassword">Choose password</label> -->
+                    <input type="password" placeholder="Password" id="signIpPassword" required />
+                    <!-- <a href="#">Forgot your password?</a> -->
+                    <button>Sign In</button>
+                </form>
+            </div>
+            <div class="overlayContainer">
+                <div class="overlay">
+                    <div class="overlayPanel overlayLeft">
+                        <h2>Welcome Back!</h2>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlayPanel overlayRight">
+                        <h2>Hello, Friend!</h2>
+                        <p>Enter your personal details and start journey with us</p>
+                        <button class="ghost" id="signUp">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <section id="carouselContainer">
         <div class="contentSlider wrapper">
@@ -63,11 +172,27 @@
     </section>
 
     <main>
+        <section id="search">
+            <div class="searchTerm wrapper">
+                <h2>Search Results</h2>
+
+                <div class="searchResult"></div>
+            </div>
+        </section>
+
         <section id="popular">
             <div class="popular wrapper">
                 <h2>Popular Movies</h2>
     
                 <div class="results"></div>
+            </div>
+        </section>
+
+        <section id="favourites">
+            <div class="myList wrapper">
+                <h2>Favourites</h2>
+
+                <div class="favList"></div>
             </div>
         </section>
     </main>
@@ -76,7 +201,31 @@
         <p class="wrapper">Created by Nuno Macedo 2020 &copy; powered by TMDB</p>
     </footer>
 
-    <script src='https://code.jquery.com/jquery-3.4.1.min.js' integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
-    <script src="./script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+    
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCSgfBHEw-DlbvMGsXV91qG3ykA5TN31bA",
+            authDomain: "bingeflix-app.firebaseapp.com",
+            databaseURL: "https://bingeflix-app.firebaseio.com",
+            projectId: "bingeflix-app",
+            storageBucket: "bingeflix-app.appspot.com",
+            messagingSenderId: "758584034944",
+            appId: "1:758584034944:web:e89a66ca44b0b368b0c865"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // make auth and firestore references
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+    </script>
+    
+    <script src='https://code.jquery.com/jquery-3.4.1.min.js'
+        integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
+    <script src="signIn.js"></script>
+    <script src="script.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,90 @@
+#search {
+    padding-top: 35px;
+    height: auto;
+    background: $primaryBackground;
+    .searchTerm {
+        h2 {
+            display: none;
+            font-family: 'Nunito', sans-serif;
+            font-size: 3.5rem;
+            color: $primaryBorder;
+            margin: 0;
+            padding: 10px 0;
+        }
+        .searchResult {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            .searchDetails {
+                width: 250px;
+                padding: 15px;
+            }
+            .searchBackdrop {
+                border: 2px solid silver;
+                box-shadow: 0 4px 4px lightgrey;
+                border-radius: 15px;
+                padding: 8px;
+                transition: ease 0.25s;
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+            .searchInfo {
+                .extraInfo {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding-top: 20px;
+                    h3,
+                    p {
+                        margin: 0;
+                        padding: 0;
+                        i {
+                            padding-right: 5px;
+                        }
+                    }
+                }
+                h3,
+                h4,
+                p {
+                    font-family: 'Nunito', sans-serif;
+                    color: $primaryBorder;
+                    text-align: left;
+                }
+                h3 {
+                    font-size: 1.6rem;
+                    font-style: italic;
+                    text-align: center;
+                    padding-top: 15px;
+                }
+                h4 {
+                    font-size: 1.4rem;
+                    border-bottom: 2px solid transparent;
+                    border: $primaryColor;
+                    position: relative;
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        transform: scaleX(0);
+                        transition: all ease-in-out 0.5s;
+                        border-bottom: 2px solid transparent;
+                        top: 20px;
+                        left: 0;
+                    }
+                    &:hover,
+                    &:focus {
+                        &:after {
+                        border-bottom: 2px solid $primaryColor;
+                        transform: scaleX(1);
+                        width: 40%;
+                        }
+                    }
+                }
+                p {
+                    font-size: 1.3rem;
+                    text-transform: lowercase;
+                }
+            }
+        }
+    }
+}

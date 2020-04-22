@@ -13,6 +13,56 @@ header {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
         }
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: $primaryColor;
+            border-radius: 40px;
+            height: 35px;
+            padding: 2px;
+            .fa-times {
+                font-size: 1.6rem;
+                color: $primaryBackground;
+                display: none;
+                padding-left: 10px;
+            }
+            #searchBtn {
+                float: right;
+                width: 35px;
+                height: 35px;
+                border-radius: 40px;
+                color: $primaryBackground;
+                background: $primaryColor;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                transition: 1s;
+                i {
+                    font-size: 1.8rem;
+                    color: $primaryBackground;
+                    cursor: pointer;
+                }
+            }
+            #searchTxt {
+                font-family: 'Montserrat', sans-serif;
+                font-size: 1.3rem;
+                border: none;
+                background: $primaryColor;
+                outline: none;
+                float: left;
+                width: 0;
+                padding: 0;
+                transition: all 1s ease-in-out;
+                &::placeholder {
+                    color: $secondaryPopColor;
+                }
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
         .nav {
             display: flex;
             justify-content: space-between;
@@ -24,7 +74,8 @@ header {
                 margin: 0;
                 width: 100%;
                 li {
-                    font-size: 1.6rem; 
+                    // display: none;
+                    font-size: 1.8rem; 
                     transition: 0.35s;
                     padding-right: 20px;
                     &:last-child {
@@ -52,63 +103,12 @@ header {
                             }
                         }
                     }
+                    i {
+                        font-size: 1.5rem;
+                    }
                 }
             }
         }
-        // nav.mobileNav {
-        //     input[type="checkbox"]:checked + ul.navMobile {
-        //         right: 0;
-        //     }
-        //     input[type="checkbox"] {
-        //         display: none;
-        //     }
-        //     label[for="toggleMenu"] {
-        //         // position: fixed;
-        //         color: $primaryBackground;
-        //         z-index: 10;
-        //     }
-        //     i {
-        //         font-size: 3.5rem;
-        //         color: $primaryColor;
-        //     }
-        // }
-        // .navMobile {
-        //     display: flex;
-        //     flex-direction: column;
-        //     background-color: rgba($primaryColor, 0.95);
-        //     list-style: none;
-        //     position: fixed;
-        //     z-index: 10;
-        //     width: 200px;
-        //     right: -200px;
-        //     height: 200px;
-        //     top: 52px;
-        //     margin: 0;
-        //     padding: 0 10px;
-        //     border-radius: 15px 0 15px 15px;
-        //     transition: all 0.5s;
-        //     li {
-        //         padding: 8% 0;
-        //         a {
-        //             font-size: 1.6rem;
-        //             color: $primaryBackground;
-        //             text-decoration: none;
-        //             text-transform: uppercase;
-        //             display: inline-block;
-        //             border-bottom: 3px solid transparent;
-        //             transition: all 0.25s;
-        //             &:hover,
-        //             &:focus {
-        //                 border-bottom: 3px solid $primaryBorder;
-        //             }
-        //         }
-        //     }
-        // }
-        // // End of mobile menu //
-        
-
-
-        
     }
     .mobileNav {
         display: none;
