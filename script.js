@@ -11,14 +11,26 @@ flixApp.movieTrailer = '';
 flixApp.date;
 flixApp.fav = [];
 
+// Transition between nav tabs
+// $('.tabContent').hide();
+// $('.tabContent:nth-child(1)').show();
 
-// Search bar function
+// $('ul li').on('click', function() {
+//     // $('ul li').removeClass('active');
+//     // $(this).addClass('active');
+
+//     let currentTabValue = $(this).attr('data-list');
+//     $('.' + currentTabValue).show();
+// })
+
+
+// Search bar function styles
 const searchBtn = $('#searchBtn');
 const icon = $('.fa-search');
 const iconClose = $('.fa-times');
 const search = $('#searchTxt');
 
-searchBtn.on('click', () => {
+searchBtn.on('click', function() {
     search.css({width: '250px'});
     search.css({paddingLeft: '15px'});
     search.css({cursor: 'text'});
@@ -33,7 +45,7 @@ let message = `Search what you're looking for`;
 let speed = 150;
 
 function typeWriter() {
-    if (i < message.length) {
+    if(i < message.length) {
         msg = search.attr('placeholder') + message.charAt(i);
         search.attr('placeholder', msg);
         i++;
@@ -41,46 +53,38 @@ function typeWriter() {
     }
 };
 
-const searchTitle = $('.searchTerm h2');
-
-$('form').on('submit', (e) => {
+// Search term on submit function
+$('form').on('submit', function(e) {
     e.preventDefault();
-    const searchTerm = $('#searchTxt').val();
-    // if (searchTerm === '') {
-    //     alert('please enter a movie or actor')
-    // };
-    flixApp.search(searchTerm);
-
+    const searchTerm = $('input').val();
+    if(searchTerm !== '') {
+        $('.searchResult').empty();
+        flixApp.search(searchTerm);
+    };
+    
     $("form")[0].reset();
-
+    
+    const searchTitle = $('.searchTerm h2');
     searchTitle.css({display: 'block'});
-
+    
     $('html, body').animate({
         scrollTop: $("#search").offset().top
     }, 1000);
-    return false;
 });
 
-iconClose.on('click', () => {
+// Function to closed the search bar
+iconClose.on('click', function() {
     search.css({width: '0'});
     search.css({paddingLeft: '0'});
     iconClose.css({display: 'none'});
+
+    $("form")[0].reset();
 });
 
-// Search term API call
-flixApp.search = function(queryParam) {
-    $.ajax({
-        url: `${flixApp.baseUrl}/search/multi`,
-        method: 'GET',
-        dataType: 'json',
-        data: {
-            api_key: flixApp.key,
-            query: queryParam,
-        }
-    }).then(function (searchData) {
-        flixApp.search = searchData.results.slice(0, 5);
-        flixApp.search.forEach(movie => {
-            const displaySearch = `
+// Display Search term on page
+flixApp.searchDisplay = function(searchMovie) {
+    searchMovie.forEach(movie => {
+        const displaySearch = `
                 <div class="searchDetails"> 
                     <img class="searchBackdrop" src="${flixApp.imageBaseUrl}/${movie.poster_path}"/>
                     <div class="searchInfo">
@@ -94,10 +98,24 @@ flixApp.search = function(queryParam) {
                     </div>
                 </div>
             `;
-            $('.searchResult').append(displaySearch);
-        });
-    }).fail(function (error) {
-        alert('The movie could not be found')
+        $('.searchResult').append(displaySearch);
+    })
+};
+
+// Search term API call
+flixApp.search = function(queryParam) {
+    $.ajax({
+        url: `${flixApp.baseUrl}/search/multi`,
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            api_key: flixApp.key,
+            query: queryParam,
+        }
+    }).then(function(searchData) {
+        flixApp.searchDisplay(searchData.results.slice(0, 5));
+    }).fail(function(error) {
+        alert('The movie searched could not be found')
     });
 };
 
@@ -271,49 +289,44 @@ flixApp.popularMovies = function() {
 }
 
 // Add Favourites to favList
-flixApp.favourite = function () {
-    $(document).on('click', '.movieDetails', function(e) {
-        const poster = e.currentTarget.firstElementChild.children[0];
-        const title = e.currentTarget.firstElementChild.children[1].children[0];
-        const overview = e.currentTarget.firstElementChild.children[1].children[1];
+// flixApp.favourite = function() {
+//     $(document).on('click', '.movieDetails', function(e) {
+//         const poster = e.currentTarget.firstElementChild.children[0];
+//         const title = e.currentTarget.firstElementChild.children[1].children[0];
+//         const overview = e.currentTarget.firstElementChild.children[1].children[1];
 
-        // const favMovie = (poster + title + overview);
+//         // const favMovie = (poster + title + overview);
         
-        // flixApp.fav.push(favMovie);
-        // console.log(favMovie);
+//         // flixApp.fav.push(favMovie);
+//         // console.log(favMovie);
 
-        // // console.log(flixApp.fav);
-        // flixApp.fav.forEach(movie => {
-        //     const displayFavMovie = `
-        //         <div class="movieDetails">
-        //             <div class="moviePoster">
-        //                 <img class="poster" src="${movie.imageBaseUrl}/${movie.poster_path}" />
-        //                 <div class="movieInfo">
-        //                     <h3>${title})</h3>
-        //                     <p>${overview}</p>
-        //                     <a href="${trailer}" target="_blank" class="btn"> Trailer <i class="fas fa-play"></i></a>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     `;
-        //     $('.favList').append(displayFavMovie);
-        // })
-    });
+//         // // console.log(flixApp.fav);
+//         // flixApp.fav.forEach(movie => {
+//         //     const displayFavMovie = `
+//         //         <div class="movieDetails">
+//         //             <div class="moviePoster">
+//         //                 <img class="poster" src="${movie.imageBaseUrl}/${movie.poster_path}" />
+//         //                 <div class="movieInfo">
+//         //                     <h3>${title})</h3>
+//         //                     <p>${overview}</p>
+//         //                     <a href="${trailer}" target="_blank" class="btn"> Trailer <i class="fas fa-play"></i></a>
+//         //                 </div>
+//         //             </div>
+//         //         </div>
+//         //     `;
+//         //     $('.favList').append(displayFavMovie);
+//         // })
+//     });
 
-    // Change the heart when clicked to a check mark
-    $(document).on('click', '.favBtn', function() {
-        // $(this)
-        //     .find('i')
-        //     .toggleClass('fa-heart')
-        //     .toggleClass('fa-check-circle')
-        
-        if($(this).text() == " Favourite this") {
-            $(this).html('<i class="fas fa-check-circle"></i> Added');
-        } else {
-            $(this).html('<i class="far fa-heart"></i> Favourite this');
-        }
-    });
-};
+//     // Change the heart when clicked to a check mark
+//     $(document).on('click', '.favBtn', function() {
+//         if($(this).text() == " Favourite this") {
+//             $(this).html('<i class="fas fa-check-circle"></i> Added');
+//         } else {
+//             $(this).html('<i class="far fa-heart"></i> Favourite this');
+//         }
+//     });
+// };
 
 // Setup FavMovies
 // const setupFavMovies = (data) => {
@@ -359,13 +372,13 @@ flixApp.movieVideos = function() {
         });
     }).fail(function (error) {
         alert('We have a problem!')
-    });
+    });   
 }
 
 flixApp.init = function() {
     flixApp.moviesHero();
     flixApp.popularMovies();
-    flixApp.favourite();
+    // flixApp.favourite();
 }
 
 $(function() {

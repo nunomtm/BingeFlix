@@ -22,16 +22,17 @@
             </a>
             
             <nav class="nav">
-                <form class="search-container">
-                    <i class="fas fa-times"></i>
-                    <input type="text" id="searchTxt" placeholder="">
-                    <a href="#" id="searchBtn">
-                        <i class="fas fa-search"></i>
-                    </a>
+                <form action="#">
+                    <div class="searchBarContainer">
+                        <i class="fas fa-times"></i>
+                        <input type="text" id="searchTxt" placeholder="" aria-label="search">
+                        <i class="fas fa-search" id="searchBtn" aria-label="search icon"></i>
+                    </div>
                 </form>
+
                 <ul>
                     <li>
-                        <a href="#popular">
+                        <a href="#popular" >
                             <i class="fas fa-chart-line"></i> 
                             Popular Movies
                         </a>
@@ -58,9 +59,9 @@
             </nav>
             
             <nav class="mobileNav">
-                <a href="index.html">
+                <!-- <a href="index.html">
                     <h1 class="logo">Bingeflix</h1>
-                </a>
+                </a> -->
 
                 <label for="toggleMenu"><i class="fas fa-film"></i></label>
                 <input type="checkbox" id="toggleMenu" name="toggleMenu">
@@ -92,64 +93,11 @@
                     </li>
                 </ul>
             </nav>
+
         </div>
     </header>
 
-    <!-- Sign in html -->
-    <section id="account">
-        <div class="container wrapper" id="container">
-            <div class="formContainer signUpContainer">
-                <form id="signUpForm" action="#">
-                    <h1>Create Account</h1>
-                    <!-- <div class="socialContainer">
-                            <a href="#" class="social"><i class="fab fa-google"></i></a>
-                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social"><i class="fab fa-twitter"></i></a>
-                        </div>
-                    <span>or use your email for registration</span> -->
-                    <!-- <input type="text" placeholder="Name"/> -->
-                    <!-- <label for="signUpEmail">Email address</label> -->
-                    <input type="email" placeholder="Email" id="signUpEmail" required />
-                    <!-- <label for="signUpPassword">Choose password</label> -->
-                    <input type="password" placeholder="Password" id="signUpPassword" required />
-                    <button>Sign Up</button>
-                </form>
-            </div>
-            <div class="formContainer signInContainer">
-                <form id="signInForm" action="#">
-                    <h1>Sign in</h1>
-                    <!-- <div class="socialContainer">
-                            <a href="#" class="social"><i class="fab fa-google"></i></a>
-                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social"><i class="fab fa-twitter"></i></a>
-                        </div>
-                    <span>or use your account</span> -->
-                    <!-- <label for="signInEmail">Email address</label> -->
-                    <input type="email" placeholder="Email" id="signInEmail" required />
-                    <!-- <label for="signIpPassword">Choose password</label> -->
-                    <input type="password" placeholder="Password" id="signIpPassword" required />
-                    <!-- <a href="#">Forgot your password?</a> -->
-                    <button>Sign In</button>
-                </form>
-            </div>
-            <div class="overlayContainer">
-                <div class="overlay">
-                    <div class="overlayPanel overlayLeft">
-                        <h2>Welcome Back!</h2>
-                        <p>To keep connected with us please login with your personal info</p>
-                        <button class="ghost" id="signIn">Sign In</button>
-                    </div>
-                    <div class="overlayPanel overlayRight">
-                        <h2>Hello, Friend!</h2>
-                        <p>Enter your personal details and start journey with us</p>
-                        <button class="ghost" id="signUp">Sign Up</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="carouselContainer">
+    <section class="hero" id="carouselContainer">
         <div class="contentSlider wrapper">
             <div class="slider"></div>
             
@@ -196,6 +144,60 @@
             </div>
         </section>
     </main>
+
+    <!-- Sign in -->
+    <section id="account">
+        <div class="container wrapper" id="container">
+            <div class="formContainer signUpContainer">
+                <form id="signUpForm" action="#">
+                    <h1>Create Account</h1>
+                    <!-- <div class="socialContainer">
+                                            <a href="#" class="social"><i class="fab fa-google"></i></a>
+                                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="#" class="social"><i class="fab fa-twitter"></i></a>
+                                        </div>
+                                    <span>or use your email for registration</span> -->
+                    <!-- <input type="text" placeholder="Name"/> -->
+                    <!-- <label for="signUpEmail">Email address</label> -->
+                    <input type="email" placeholder="Email" id="signUpEmail" required />
+                    <!-- <label for="signUpPassword">Choose password</label> -->
+                    <input type="password" placeholder="Password" id="signUpPassword" required />
+                    <button>Sign Up</button>
+                </form>
+            </div>
+            <div class="formContainer signInContainer">
+                <form id="signInForm" action="#">
+                    <h1>Sign in</h1>
+                    <!-- <div class="socialContainer">
+                                            <a href="#" class="social"><i class="fab fa-google"></i></a>
+                                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="#" class="social"><i class="fab fa-twitter"></i></a>
+                                        </div>
+                                    <span>or use your account</span> -->
+                    <!-- <label for="signInEmail">Email address</label> -->
+                    <input type="email" placeholder="Email" id="signInEmail" required />
+                    <!-- <label for="signIpPassword">Choose password</label> -->
+                    <input type="password" placeholder="Password" id="signIpPassword" required />
+                    <!-- <a href="#">Forgot your password?</a> -->
+                    <button>Sign In</button>
+                </form>
+            </div>
+            <div class="overlayContainer">
+                <div class="overlay">
+                    <div class="overlayPanel overlayLeft">
+                        <h2>Welcome Back!</h2>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlayPanel overlayRight">
+                        <h2>Hello, Friend!</h2>
+                        <p>Enter your personal details and start journey with us</p>
+                        <button class="ghost" id="signUp">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <p class="wrapper">Created by Nuno Macedo 2020 &copy; powered by TMDB</p>
