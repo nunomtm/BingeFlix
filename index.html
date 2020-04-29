@@ -16,13 +16,12 @@
 
     <header>
         <div class="navContainer wrapper">
-            
             <a href="index.html">
                 <h1 class="logo">Bingeflix</h1>
             </a>
             
             <nav class="nav">
-                <form action="#">
+                <form action="#" data-list="tab1">
                     <div class="searchBarContainer">
                         <i class="fas fa-times"></i>
                         <input type="text" id="searchTxt" placeholder="" aria-label="search">
@@ -31,13 +30,13 @@
                 </form>
 
                 <ul>
-                    <li>
+                    <li data-list="tab2">
                         <a href="#popular" >
                             <i class="fas fa-chart-line"></i> 
                             Popular Movies
                         </a>
                     </li>
-                    <li class="loggedIn">
+                    <li class="loggedIn" data-list="tab3">
                         <a href="#favourites">
                             <i class="fas fa-heart"></i>
                             Favourites
@@ -49,7 +48,7 @@
                             Logout
                         </a>
                     </li>
-                    <li class="loggedOut" id="signInTab">
+                    <li class="loggedOut" id="signInTab" data-list="tab4">
                         <a href="#account">
                             <i class="fas fa-user"></i> 
                             Sign In
@@ -93,34 +92,34 @@
                     </li>
                 </ul>
             </nav>
-
         </div>
+
+        <section class="hero" id="carouselContainer">
+            <div class="contentSlider wrapper">
+                <div class="slider"></div>
+                
+                <input type="radio" id="banner1" class="carousel" name="banner" checked>
+                <input type="radio" id="banner2" class="carousel" name="banner">
+                <input type="radio" id="banner3" class="carousel" name="banner">
+                <input type="radio" id="banner4" class="carousel" name="banner">
+                <input type="radio" id="banner5" class="carousel" name="banner">
+    
+                <nav>
+                    <div class="controls">
+                        <label for="banner1"><span class="progressbar"><span class="progressbarFill"></span></span></label>
+                        <label for="banner2"><span class="progressbar"><span class="progressbarFill"></span></span></label>
+                        <label for="banner3"><span class="progressbar"><span class="progressbarFill"></span></span></label>
+                        <label for="banner4"><span class="progressbar"><span class="progressbarFill"></span></span></label>
+                        <label for="banner5"><span class="progressbar"><span class="progressbarFill"></span></span></label>
+                    </div>
+                </nav>
+            </div>
+        </section>
     </header>
 
-    <section class="hero" id="carouselContainer">
-        <div class="contentSlider wrapper">
-            <div class="slider"></div>
-            
-            <input type="radio" id="banner1" class="carousel" name="banner" checked>
-            <input type="radio" id="banner2" class="carousel" name="banner">
-            <input type="radio" id="banner3" class="carousel" name="banner">
-            <input type="radio" id="banner4" class="carousel" name="banner">
-            <input type="radio" id="banner5" class="carousel" name="banner">
 
-            <nav>
-                <div class="controls">
-                    <label for="banner1"><span class="progressbar"><span class="progressbarFill"></span></span></label>
-                    <label for="banner2"><span class="progressbar"><span class="progressbarFill"></span></span></label>
-                    <label for="banner3"><span class="progressbar"><span class="progressbarFill"></span></span></label>
-                    <label for="banner4"><span class="progressbar"><span class="progressbarFill"></span></span></label>
-                    <label for="banner5"><span class="progressbar"><span class="progressbarFill"></span></span></label>
-                </div>
-            </nav>
-        </div>
-    </section>
-
-    <main>
-        <section id="search">
+    <main class="content">
+        <section id="search" class="tabContent tab1">
             <div class="searchTerm wrapper">
                 <h2>Search Results</h2>
 
@@ -128,7 +127,7 @@
             </div>
         </section>
 
-        <section id="popular">
+        <section id="popular" class="tabContent tab2">
             <div class="popular wrapper">
                 <h2>Popular Movies</h2>
     
@@ -136,68 +135,69 @@
             </div>
         </section>
 
-        <section id="favourites">
+        <section id="favourites" class="tabContent tab3">
             <div class="myList wrapper">
                 <h2>Favourites</h2>
 
                 <div class="favList"></div>
             </div>
         </section>
-    </main>
+        
+        <section id="account" class="tabContent tab">
+            <div class="container wrapper" id="container">
+                <div class="formContainer signUpContainer">
+                    <form id="signUpForm" action="#">
+                        <h1>Create Account</h1>
+                        <!-- <div class="socialContainer">
+                            <a href="#" class="social"><i class="fab fa-google"></i></a>
+                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social"><i class="fab fa-twitter"></i></a>
+                        </div>
+                        <span>or use your email for registration</span> -->
+                        <!-- <input type="text" placeholder="Name"/> -->
+                        <!-- <label for="signUpEmail">Email address</label> -->
+                        <input type="email" placeholder="Email" id="signUpEmail" required />
+                        <!-- <label for="signUpPassword">Choose password</label> -->
+                        <input type="password" placeholder="Password" id="signUpPassword" required />
+                        <button>Sign Up</button>
+                    </form>
+                </div>
 
-    <!-- Sign in -->
-    <section id="account">
-        <div class="container wrapper" id="container">
-            <div class="formContainer signUpContainer">
-                <form id="signUpForm" action="#">
-                    <h1>Create Account</h1>
-                    <!-- <div class="socialContainer">
-                                            <a href="#" class="social"><i class="fab fa-google"></i></a>
-                                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="#" class="social"><i class="fab fa-twitter"></i></a>
-                                        </div>
-                                    <span>or use your email for registration</span> -->
-                    <!-- <input type="text" placeholder="Name"/> -->
-                    <!-- <label for="signUpEmail">Email address</label> -->
-                    <input type="email" placeholder="Email" id="signUpEmail" required />
-                    <!-- <label for="signUpPassword">Choose password</label> -->
-                    <input type="password" placeholder="Password" id="signUpPassword" required />
-                    <button>Sign Up</button>
-                </form>
-            </div>
-            <div class="formContainer signInContainer">
-                <form id="signInForm" action="#">
-                    <h1>Sign in</h1>
-                    <!-- <div class="socialContainer">
-                                            <a href="#" class="social"><i class="fab fa-google"></i></a>
-                                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="#" class="social"><i class="fab fa-twitter"></i></a>
-                                        </div>
-                                    <span>or use your account</span> -->
-                    <!-- <label for="signInEmail">Email address</label> -->
-                    <input type="email" placeholder="Email" id="signInEmail" required />
-                    <!-- <label for="signIpPassword">Choose password</label> -->
-                    <input type="password" placeholder="Password" id="signIpPassword" required />
-                    <!-- <a href="#">Forgot your password?</a> -->
-                    <button>Sign In</button>
-                </form>
-            </div>
-            <div class="overlayContainer">
-                <div class="overlay">
-                    <div class="overlayPanel overlayLeft">
-                        <h2>Welcome Back!</h2>
-                        <p>To keep connected with us please login with your personal info</p>
-                        <button class="ghost" id="signIn">Sign In</button>
-                    </div>
-                    <div class="overlayPanel overlayRight">
-                        <h2>Hello, Friend!</h2>
-                        <p>Enter your personal details and start journey with us</p>
-                        <button class="ghost" id="signUp">Sign Up</button>
+                <div class="formContainer signInContainer">
+                    <form id="signInForm" action="#">
+                        <h1>Sign in</h1>
+                        <!-- <div class="socialContainer">
+                            <a href="#" class="social"><i class="fab fa-google"></i></a>
+                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social"><i class="fab fa-twitter"></i></a>
+                        </div>
+                        <span>or use your account</span> -->
+                        <!-- <label for="signInEmail">Email address</label> -->
+                        <input type="email" placeholder="Email" id="signInEmail" required />
+                        <!-- <label for="signIpPassword">Choose password</label> -->
+                        <input type="password" placeholder="Password" id="signIpPassword" required />
+                        <!-- <a href="#">Forgot your password?</a> -->
+                        <button>Sign In</button>
+                    </form>
+                </div>
+
+                <div class="overlayContainer">
+                    <div class="overlay">
+                        <div class="overlayPanel overlayLeft">
+                            <h2>Welcome Back!</h2>
+                            <p>To keep connected with us please login with your personal info</p>
+                            <button class="ghost" id="signIn">Sign In</button>
+                        </div>
+                        <div class="overlayPanel overlayRight">
+                            <h2>Hello, Friend!</h2>
+                            <p>Enter your personal details and start journey with us</p>
+                            <button class="ghost" id="signUp">Sign Up</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer>
         <p class="wrapper">Created by Nuno Macedo 2020 &copy; powered by TMDB</p>

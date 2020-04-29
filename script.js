@@ -12,17 +12,18 @@ flixApp.date;
 flixApp.fav = [];
 
 // Transition between nav tabs
-// $('.tabContent').hide();
-// $('.tabContent:nth-child(1)').show();
+$(".content .tabContent").hide();
+$(".content .tabContent:first-child").show();
 
-// $('ul li').on('click', function() {
-//     // $('ul li').removeClass('active');
-//     // $(this).addClass('active');
+$("ul li").click(function() {
 
-//     let currentTabValue = $(this).attr('data-list');
-//     $('.' + currentTabValue).show();
-// })
+    $("ul li").removeClass("active");
+    $(this).addClass("active");
 
+    let currentTab = $(this).attr("data-list");
+    $(".content .tabContent").hide();
+    $("." + currentTab).show();
+})
 
 // Search bar function styles
 const searchBtn = $('#searchBtn');
@@ -52,6 +53,7 @@ function typeWriter() {
         setTimeout(typeWriter, speed);
     }
 };
+// Search bar function styles end
 
 // Search term on submit function
 $('form').on('submit', function(e) {
@@ -137,7 +139,7 @@ const listFav = document.querySelector('.listFav');
 const loggedOutLinks = document.querySelectorAll('.loggedOut');
 const loggedInLinks = document.querySelectorAll('.loggedIn');
 
-// Setup UI
+// Setup UI for Nav bar based on user logged in or out
 const setupUI = (user) => {
     if (user) {
         loggedInLinks.forEach(item => item.style.display = 'block');
@@ -148,15 +150,6 @@ const setupUI = (user) => {
         loggedOutLinks.forEach(item => item.style.display = 'block');
     }
 };
-
-// Show sign in page
-const signInTab = $('#signInTab')
-
-signInTab.on('click', function() {
-    $('#account').css({display: 'block'});
-    $('#carouselContainer').css({display: 'none'});
-    $('main').css({ display: 'none' });
-});
 // Authentication ends here
 
 // Carousel Function
@@ -288,68 +281,14 @@ flixApp.popularMovies = function() {
     });
 }
 
-// Add Favourites to favList
-// flixApp.favourite = function() {
-//     $(document).on('click', '.movieDetails', function(e) {
-//         const poster = e.currentTarget.firstElementChild.children[0];
-//         const title = e.currentTarget.firstElementChild.children[1].children[0];
-//         const overview = e.currentTarget.firstElementChild.children[1].children[1];
-
-//         // const favMovie = (poster + title + overview);
-        
-//         // flixApp.fav.push(favMovie);
-//         // console.log(favMovie);
-
-//         // // console.log(flixApp.fav);
-//         // flixApp.fav.forEach(movie => {
-//         //     const displayFavMovie = `
-//         //         <div class="movieDetails">
-//         //             <div class="moviePoster">
-//         //                 <img class="poster" src="${movie.imageBaseUrl}/${movie.poster_path}" />
-//         //                 <div class="movieInfo">
-//         //                     <h3>${title})</h3>
-//         //                     <p>${overview}</p>
-//         //                     <a href="${trailer}" target="_blank" class="btn"> Trailer <i class="fas fa-play"></i></a>
-//         //                 </div>
-//         //             </div>
-//         //         </div>
-//         //     `;
-//         //     $('.favList').append(displayFavMovie);
-//         // })
-//     });
-
-//     // Change the heart when clicked to a check mark
-//     $(document).on('click', '.favBtn', function() {
-//         if($(this).text() == " Favourite this") {
-//             $(this).html('<i class="fas fa-check-circle"></i> Added');
-//         } else {
-//             $(this).html('<i class="far fa-heart"></i> Favourite this');
-//         }
-//     });
-// };
-
-// Setup FavMovies
-// const setupFavMovies = (data) => {
-//     if (data.length) {
-//         // let html = '';
-//         data.forEach(fav => {
-//             const favMovie = fav.data();
-//             const li = `
-//                 <li>
-//                     <div class="collapsible-header grey lighten-4"> ${favMovie.title} </div>
-//                     <div class="collapsible-body white"> ${favMovie.overview} </div>
-//                 </li>
-//             `;
-//             // html += li;
-//             $('.listFav').append(li);
-//         });
-//         // listFav.innerHTML = html
-//     } else {
-//         $('.listFav').append(`<h5 class="center-align">Login to view guides</h5>`)
-//         // listFav.innerHTML = '<h5 class="center-align">Login to view guides</h5>';
-//     }
-// };
-
+// Change the heart when clicked to a check mark
+$(document).on('click', '.favBtn', function() {
+    if($(this).text() == " Favourite this") {
+        $(this).html('<i class="fas fa-check-circle"></i> Added');
+    } else {
+        $(this).html('<i class="far fa-heart"></i> Favourite this');
+    }
+});
 
 // Call to get the video ID to play on YouTube
 flixApp.movieVideos = function() {
