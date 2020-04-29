@@ -15,8 +15,7 @@ flixApp.fav = [];
 $(".content .tabContent").hide();
 $(".content .tabContent:first-child").show();
 
-$("ul li").click(function() {
-
+$("ul li").on('click', function() {
     $("ul li").removeClass("active");
     $(this).addClass("active");
 
@@ -32,11 +31,11 @@ const iconClose = $('.fa-times');
 const search = $('#searchTxt');
 
 searchBtn.on('click', function() {
-    search.css({width: '250px'});
-    search.css({paddingLeft: '15px'});
-    search.css({cursor: 'text'});
-    icon.css({left: '10px'});
-    iconClose.css({display: 'block'});
+    search.css({ width: '250px' });
+    search.css({ paddingLeft: '15px' });
+    search.css({ cursor: 'text' });
+    icon.css({ left: '10px' });
+    iconClose.css({ display: 'block' });
     search.focus();
     typeWriter();
 });
@@ -67,7 +66,7 @@ $('form').on('submit', function(e) {
     $("form")[0].reset();
     
     const searchTitle = $('.searchTerm h2');
-    searchTitle.css({display: 'block'});
+    searchTitle.css({ display: 'block' });
     
     $('html, body').animate({
         scrollTop: $("#search").offset().top
@@ -76,9 +75,9 @@ $('form').on('submit', function(e) {
 
 // Function to closed the search bar
 iconClose.on('click', function() {
-    search.css({width: '0'});
-    search.css({paddingLeft: '0'});
-    iconClose.css({display: 'none'});
+    search.css({ width: '0' });
+    search.css({ paddingLeft: '0' });
+    iconClose.css({ display: 'none' });
 
     $("form")[0].reset();
 });

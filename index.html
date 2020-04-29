@@ -43,13 +43,13 @@
                         </a>
                     </li>
                     <li class="loggedIn">
-                        <a href="#" id="logOut">
+                        <a href="#index.html" id="logOut">
                             <i class="fas fa-door-open"></i> 
                             Logout
                         </a>
                     </li>
-                    <li class="loggedOut" id="signInTab" data-list="tab4">
-                        <a href="#account">
+                    <li class="loggedOut" data-list="tab4">
+                        <a href="#logIn">
                             <i class="fas fa-user"></i> 
                             Sign In
                         </a>
@@ -85,7 +85,7 @@
                         </a>
                     </li>
                     <li class="loggedOut" id="signInTab">
-                        <a href="#account">
+                        <a href="#logIn">
                             <i class="fas fa-user"></i>
                             Sign In
                         </a>
@@ -143,7 +143,7 @@
             </div>
         </section>
         
-        <section id="account" class="tabContent tab">
+        <section id="logIn" class="tabContent tab4">
             <div class="container wrapper" id="container">
                 <div class="formContainer signUpContainer">
                     <form id="signUpForm" action="#">
@@ -155,9 +155,9 @@
                         </div>
                         <span>or use your email for registration</span> -->
                         <!-- <input type="text" placeholder="Name"/> -->
-                        <!-- <label for="signUpEmail">Email address</label> -->
+                        <label for="signUpEmail">Email address</label>
                         <input type="email" placeholder="Email" id="signUpEmail" required />
-                        <!-- <label for="signUpPassword">Choose password</label> -->
+                        <label for="signUpPassword">Choose password</label>
                         <input type="password" placeholder="Password" id="signUpPassword" required />
                         <button>Sign Up</button>
                     </form>
@@ -174,9 +174,9 @@
                         <span>or use your account</span> -->
                         <!-- <label for="signInEmail">Email address</label> -->
                         <input type="email" placeholder="Email" id="signInEmail" required />
-                        <!-- <label for="signIpPassword">Choose password</label> -->
+                        <label for="signIpPassword">Choose password</label>
                         <input type="password" placeholder="Password" id="signIpPassword" required />
-                        <!-- <a href="#">Forgot your password?</a> -->
+                        <a href="#">Forgot your password?</a>
                         <button>Sign In</button>
                     </form>
                 </div>
@@ -224,8 +224,7 @@
         const db = firebase.firestore();
     </script>
     
-    <script src='https://code.jquery.com/jquery-3.4.1.min.js'
-        integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
+    <script src='https://code.jquery.com/jquery-3.4.1.min.js' integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
     <script src="signIn.js"></script>
     <script src="script.js"></script>
 
