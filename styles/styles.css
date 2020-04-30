@@ -772,12 +772,62 @@ header .mobileNav {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 88.5vh;
+  height: auto;
   background: #272727;
 }
 
 #favourites .myList h2 {
   display: none;
+}
+
+#favourites .myList .favList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#favourites .myList .favList .movieDetails {
+  width: 250px;
+  padding: 15px;
+}
+
+#favourites .myList .favList .movieDetails .moviePoster img {
+  border: 2px solid silver;
+  -webkit-box-shadow: 0 4px 4px lightgrey;
+          box-shadow: 0 4px 4px lightgrey;
+  border-radius: 15px;
+  padding: 8px;
+  -webkit-transition: ease 0.25s;
+  transition: ease 0.25s;
+}
+
+#favourites .myList .favList .movieDetails .moviePoster img:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+#favourites .myList .favList .movieDetails .movieInfo h3,
+#favourites .myList .favList .movieDetails .movieInfo p {
+  font-family: 'Nunito', sans-serif;
+  color: #fff;
+  text-align: left;
+}
+
+#favourites .myList .favList .movieDetails .movieInfo h3 {
+  font-size: 1.6rem;
+  font-style: italic;
+  text-align: center;
+  padding-top: 15px;
+}
+
+#favourites .myList .favList .movieDetails .movieInfo p {
+  font-size: 1.3rem;
+  text-transform: lowercase;
 }
 
 /* Carousel Styles */

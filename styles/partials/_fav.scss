@@ -4,12 +4,50 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 88.5vh;
+    height: auto;
     background: rgb(39, 39, 39);
     .myList {
         h2 {
             display: none;
         }
+        .favList {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            .movieDetails {
+                width: 250px;
+                padding: 15px;
+                .moviePoster {
+                    img {
+                        border: 2px solid silver;
+                        box-shadow: 0 4px 4px lightgrey;
+                        border-radius: 15px;
+                        padding: 8px;
+                        transition: ease 0.25s;
+                        &:hover {
+                            transform: scale(1.05);
+                        }
+                    }
+                }
+                .movieInfo {
+                    h3,
+                    p {
+                        font-family: 'Nunito', sans-serif;
+                        color: $primaryBorder;
+                        text-align: left;
+                    }
+                    h3 {
+                        font-size: 1.6rem;
+                        font-style: italic;
+                        text-align: center;
+                        padding-top: 15px;
+                    }
+                    p {
+                        font-size: 1.3rem;
+                        text-transform: lowercase;
+                    }
+                }
+            }
+        }
     }
-    
 }

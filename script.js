@@ -16,9 +16,6 @@ $(".content .tabContent").hide();
 $(".content .tabContent:first-child").show();
 
 $("ul li").on('click', function() {
-    $("ul li").removeClass("active");
-    $(this).addClass("active");
-
     let currentTab = $(this).attr("data-list");
     $(".content .tabContent").hide();
     $("." + currentTab).show();
@@ -139,7 +136,7 @@ const loggedOutLinks = document.querySelectorAll('.loggedOut');
 const loggedInLinks = document.querySelectorAll('.loggedIn');
 
 // Setup UI for Nav bar based on user logged in or out
-const setupUI = (user) => {
+const setupUI = function(user) {
     if (user) {
         loggedInLinks.forEach(item => item.style.display = 'block');
         loggedOutLinks.forEach(item => item.style.display = 'none');
@@ -280,13 +277,57 @@ flixApp.popularMovies = function() {
     });
 }
 
-// Change the heart when clicked to a check mark
+// Add the movie favourited to the favList
 $(document).on('click', '.favBtn', function() {
-    if($(this).text() == " Favourite this") {
+    // Change the fav heart to a check mark when clicked
+    if ($(this).text() == " Favourite this") {
         $(this).html('<i class="fas fa-check-circle"></i> Added');
     } else {
         $(this).html('<i class="far fa-heart"></i> Favourite this');
     }
+
+    const movieId = flixApp.movieID;
+    $.ajax({
+        url: `${flixApp.baseUrl}/movie/${movieId}`,
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            api_key: flixApp.key,
+        }
+    }).then(function(movieData) {
+        flixApp.fav.push(movieData);
+
+        // for (i = 0; i < flixApp.fav.length; i++) {
+        //     $('.favList').append(`
+        //         <div class="movieDetails">
+        //             <div class="moviePoster">
+        //                 <img class="poster" src="${flixApp.imageBaseUrl}/${movieData.poster_path}"/>
+        //                 <div class="movieInfo">
+        //                     <h3>${movieData.title} (${movieData.release_date})</h3>
+        //                     <p>${movieData.overview}</p>
+        //                 </div>
+        //             </div>
+        //         </div>`
+        //     );
+        // }
+
+        flixApp.fav.forEach(fav => {
+            const displayFavMovie = `
+                <div class="movieDetails">
+                    <div class="moviePoster">
+                        <img class="poster" src="${flixApp.imageBaseUrl}/${fav.poster_path}"/>
+                        <div class="movieInfo">
+                            <h3>${fav.title} (${fav.release_date})</h3>
+                            <p>${fav.overview}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            $('.favList').append(displayFavMovie);
+        });
+    }).fail(function (error) {
+        console.log(error);
+    });
 });
 
 // Call to get the video ID to play on YouTube
@@ -309,14 +350,13 @@ flixApp.movieVideos = function() {
             $('.movieInfo').append(displayTrailer);
         });
     }).fail(function (error) {
-        alert('We have a problem!')
+        alert(`Sorry! We don't have a trailer for this movie`)
     });   
 }
 
 flixApp.init = function() {
     flixApp.moviesHero();
     flixApp.popularMovies();
-    // flixApp.favourite();
 }
 
 $(function() {
