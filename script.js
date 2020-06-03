@@ -8,8 +8,7 @@ flixApp.youTubeBaseUrl = 'https://www.youtube-nocookie.com/embed'
 // Global variables
 flixApp.movieID;
 flixApp.movieTrailer = '';
-flixApp.date;
-flixApp.fav = [];
+flixApp.favourites = [];
 
 // Transition between nav tabs
 $(".content .tabContent").hide();
@@ -241,6 +240,7 @@ flixApp.popularMovies = function() {
         }
     }).then(function(popularData) {
         flixApp.popular = popularData.results;
+        console.log(flixApp.popular);
         flixApp.popular.forEach(movie => {
             const movieDisplay = `
                 <div class="movieDetails"> 
@@ -248,6 +248,7 @@ flixApp.popularMovies = function() {
                         <img class="poster" src="${flixApp.imageBaseUrl}/${movie.poster_path}"/>
                         <div class="movieInfo">
                             <h3>${movie.title} (${movie.release_date})</h3>
+                            <p><i class="fas fa-star"></i> ${movie.vote_average}</p>
                             <p>${movie.overview}</p>
                             <button class="favBtn"><i class="far fa-heart"></i> Favourite this</button> 
                         </div>
@@ -277,6 +278,26 @@ flixApp.popularMovies = function() {
     });
 }
 
+// Load the favourited filmes to page 
+$('#fav').on('click', function() {
+    const favourites = flixApp.favourites;  
+    favourites.forEach(fav => {
+        const displayFavMovie = `
+            <div class="movieDetails">
+                <div class="moviePoster">
+                    <img class="poster" src="${flixApp.imageBaseUrl}/${fav.poster_path}"/>
+                    <div class="movieInfo">
+                        <h3>${fav.title} (${fav.release_date})</h3>
+                        <p>Movie duration: ${fav.runtime} min</p>
+                        <p>${fav.overview}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        $('.favList').append(displayFavMovie);
+    });
+})
+
 // Add the movie favourited to the favList
 $(document).on('click', '.favBtn', function() {
     // Change the fav heart to a check mark when clicked
@@ -295,36 +316,7 @@ $(document).on('click', '.favBtn', function() {
             api_key: flixApp.key,
         }
     }).then(function(movieData) {
-        flixApp.fav.push(movieData);
-
-        // for (i = 0; i < flixApp.fav.length; i++) {
-        //     $('.favList').append(`
-        //         <div class="movieDetails">
-        //             <div class="moviePoster">
-        //                 <img class="poster" src="${flixApp.imageBaseUrl}/${movieData.poster_path}"/>
-        //                 <div class="movieInfo">
-        //                     <h3>${movieData.title} (${movieData.release_date})</h3>
-        //                     <p>${movieData.overview}</p>
-        //                 </div>
-        //             </div>
-        //         </div>`
-        //     );
-        // }
-
-        flixApp.fav.forEach(fav => {
-            const displayFavMovie = `
-                <div class="movieDetails">
-                    <div class="moviePoster">
-                        <img class="poster" src="${flixApp.imageBaseUrl}/${fav.poster_path}"/>
-                        <div class="movieInfo">
-                            <h3>${fav.title} (${fav.release_date})</h3>
-                            <p>${fav.overview}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-            $('.favList').append(displayFavMovie);
-        });
+        flixApp.favourites.push(movieData);
     }).fail(function (error) {
         console.log(error);
     });

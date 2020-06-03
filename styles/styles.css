@@ -777,7 +777,11 @@ header .mobileNav {
 }
 
 #favourites .myList h2 {
-  display: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 3.5rem;
+  color: white;
+  margin: 0;
+  padding: 10px 0;
 }
 
 #favourites .myList .favList {
